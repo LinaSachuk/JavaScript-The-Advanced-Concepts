@@ -6,7 +6,14 @@ https://www.udemy.com/course/advanced-javascript-concepts
 
 1. Javascript Engine: A JavaScript engine is a computer program that executes JavaScript (JS) code. The first JavaScript engines were mere interpreters, but all relevant modern engines use just-in-time compilation for improved performance. JavaScript engines are typically developed by web browser vendors, and every major browser has one.
 
-2. Javascript Runtime: Javascript runtime refers to where your javascript code is executed when you run it. That said, javascript can be executed on google chrome, in which case your javascript runtime is v8, if on mozilla - it is spidermonkey, if IE - then its chakra and if on node, again its v8.
+2. Javascript Runtime: Javascript runtime refers to where your javascript code is executed when you run it. That said, javascript can be executed on google chrome, in which case your javascript runtime is v8, if on mozilla - it is spidermonkey, if IE - then its chakra and if on node, again its v8. Asynchronous Web API provided by browsers (DOM, fetch(), setTimeout())
+
+   ```JavaScript
+   console.log('1');
+   setTimeout(()=> {console.log('2'), 1000});
+   console.log('3);
+
+   ```
 
 3. Interpreter, Compiler, JIT Compiler: 
      a. AOT compiler - Ahead-of-Time (AOT): compiles before running
@@ -21,39 +28,39 @@ The call stack helps us keep track of where we are in the code so that we can ru
 
 6. Stack Overflow + Memory Leaks: Stack overflow happens when we call functions nested inside each, other over and over again. If we just keep adding functions to the stack without popping them off, we will have a stack overflow. Example: Recursion function will call itself;
 
-```apib
-function inception(){
-    inception();
-}
-inception();
-```
+   ```JavaScript
+   function inception(){
+       inception();
+   }
+   inception();
+   ```
 
-3 common memory Leaks:
-a. Global Variables
+   3 common memory Leaks:
+   a. Global Variables
 
-```apib
-var a =1;
-var b=1;
-var c=1;
-```
+   ```JavaScript
+   var a =1;
+   var b=1;
+   var c=1;
+   ```
 
-Here if I just keep adding these variables to my memory, all our memory is will eventually get used up because we are just using up memory. Imagine if these were deeply nested objects, we will be using up a lot of memory.
-b. Event Listeners
+   Here if I just keep adding these variables to my memory, all our memory is will eventually get used up because we are just using up memory. Imagine if these were deeply nested objects, we will be using up a lot of memory.
+   b. Event Listeners
 
-```apib
-var element = document.getElementById(‘button’)
-element.addeventListener(‘click’, onClick)
-```
+   ```JavaScript
+   var element = document.getElementById(‘button’)
+   element.addeventListener(‘click’, onClick)
+   ```
 
-This is a common way to leak memory because you can just keep adding event listeners and you don't remove them when you no longer need them. They will stay in the background and before you know, you have a memory leak.
-c. setInterval()
-If we put objects inside a setInterval(), they will never be garbage collected unless we remove the setInterval itself.
+   This is a common way to leak memory because you can just keep adding event listeners and you don't remove them when you no longer need them. They will stay in the background and before you know, you have a memory leak.
+   c. setInterval()
+   If we put objects inside a setInterval(), they will never be garbage collected unless we remove the setInterval itself.
 
-```apib
-setInterval( () => { //referencing objects })
-```
+   ```JavaScript
+   setInterval( () => { //referencing objects })
+   ```
 
-So something to keep in mind is that memory is limited. When it comes to a call stack and memory Heap, those are two places is where javascript runs and stores memory. So we have to be careful not to have memory leaks or stack overflow if we are to have efficient code.
+   So something to keep in mind is that memory is limited. When it comes to a call stack and memory Heap, those are two places is where javascript runs and stores memory. So we have to be careful not to have memory leaks or stack overflow if we are to have efficient code.
 
 7. Garbage Collection: Javascript is a garbage-collected language. This means that if Javascript allocates memory, let's say within a function we create an object and that object gets stored somewhere in our memory heap, automatically when we finish calling that object and if we don't need that object anymore, and there is no reference to it in our program, Javascript is going to clean it up for us. Garbage collection in Javascript uses the Mark and sweep algorithm; when a reference to a variable is removed, its deleted.
 
