@@ -123,6 +123,7 @@ console.log(y); // 100
         - Setup a memory heap for storing variables and function references.
         - Store the function declarations in the memory heap and variables within the global
         - execution context with the initial values as undefined.
+        - Hoisting
 
    2. The execution phase.
     During the execution phase, the JavaScript engine executes the code line by line. In this phase, it assigns values to variables and executes the function calls.
@@ -143,9 +144,46 @@ console.log(y); // 100
 
 **13. Scope Chain**:
 
-14. Hoisting
+**14. Hoisting**: Hosting is the behavior of moving the variables or function declarations to the top of their respective environments during compilation phase. Variables are partially hoisted and function declarations are hoisted (var and function). Hoisting is a part of the creation phase in the Global Execution Context.
 
-15. Function Invocation
+```JavaScript
+//during hosting one = undefined; will ignore a second declaration, because already assigned to equal undefined.
+var one = 1;
+var one = 2;
+
+console.log(one) //2
+
+// during hosting the compiler says Oh yeah I'm going to hoist this and I'm going to put this someplace in memory.
+function a(){
+    console.log('hi');
+}
+
+// the compiler is going to rewrite that place in memory.
+function a(){
+    console.log('bye');
+}
+//bye
+
+```
+
+**15. Function Invocation**: we are telling JavaScript engine to run our function. 
+
+```JavaScript
+//Function Expression
+var canada = () => {
+    console.log('cold'); 
+}
+
+//Function Declaration
+function india() { 
+    console.log('warm');
+}
+
+//Function Invocation/Call/Execution
+canada(); //cold
+india(); //warm
+
+```
 
 16. Function Scope vs Block Scope
 
