@@ -142,7 +142,7 @@ console.log(y); // 100
 
 **12. Lexical Environment**: In JavaScript our lexical scope (available data + variables where the function was defined) determines our available variables. Not where the function is called (dynamic scope). The very first lexical environment is the global lexical environment where we write our code.
 
-**13. Scope Chain**:
+**13. Scope Chain**: Links and gives us access to variables that are in our parent environment. Scope is where can I access that variable where's that variable in my code.
 
 **14. Hoisting**: Hosting is the behavior of moving the variables or function declarations to the top of their respective environments during compilation phase. Variables are partially hoisted and function declarations are hoisted (var and function). Hoisting is a part of the creation phase in the Global Execution Context.
 
@@ -176,6 +176,7 @@ var canada = () => {
 
 //Function Declaration
 function india() { 
+    console.log(arguments) //{}  arguments object created on each execution context
     console.log('warm');
 }
 
