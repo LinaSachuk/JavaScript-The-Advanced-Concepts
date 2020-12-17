@@ -217,6 +217,8 @@ secret; // ReferenceError: secret is not defined
 
 ```
 
+block scope
+
 17. Dynamic vs Lexical Scope
 
 18. this - call(), apply(), bind()
