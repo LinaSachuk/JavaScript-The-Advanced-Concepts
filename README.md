@@ -207,6 +207,11 @@ india(); //warm
 
 **16. Function Scope vs Block Scope**: 
 
+- When you execute a script, the JavaScript engine creates a global execution context. It also assigns variables that you declare outside of functions to the global execution context. These variables are in the global scope. They are also known as global variables.
+
+- Variables that you declare inside a function are local to the function. They are called local variables.
+
+
 ```JavaScript
 //function scope
 function a(){
@@ -215,78 +220,99 @@ function a(){
 
 secret; // ReferenceError: secret is not defined
 
+//block scope
+if (5 > 4) {
+  var secret = '12345';
+}
+
+secret;
 ```
 
-block scope
+- ES6 provides the let and const keywords that allow you to declare variables in block scope. Generally, whenever you see curly brackets {}, it is a block. It can be the area within the if, else, switch conditions or for, do while, and while loops.
 
-17. Dynamic vs Lexical Scope
+```JavaScript
+function say(message) {
+    if(!message) {
+        let greeting = 'Hello'; // block scope
+        console.log(greeting);
+    }
+    // say it again ?
+    console.log(greeting); // ReferenceError
+}
 
-18. this - call(), apply(), bind()
+say();
+```
 
-19. IIFEs
 
-21. Context vs Scope
 
-22. Static vs Dynamically Typed
+1.  Dynamic vs Lexical Scope
 
-23. Primitive Types
+2.  this - call(), apply(), bind()
 
-24. Pass by Reference vs Pass by Value
+3.  IIFEs
 
-25. Type Coercion
+4.  Context vs Scope
 
-26. Arrays, Functions, Objects
+5.  Static vs Dynamically Typed
 
-27. Closures
+6.  Primitive Types
 
-28. Prototypal Inheritance
+7.  Pass by Reference vs Pass by Value
 
-29. Class Inheritance
+8.  Type Coercion
 
-30. Memoization
+9.  Arrays, Functions, Objects
 
-31. Higher Order Functions
+10. Closures
 
-32. Functions vs Objects
+11. Prototypal Inheritance
 
-33. Scheme + Java in JavaScript
+12. Class Inheritance
 
-34. OOP (Object Oriented Programming)
+13. Memoization
 
-35. Private vs Public properties
+14. Higher Order Functions
 
-36. Functional Programming
+15. Functions vs Objects
 
-37. Immutability
+16. Scheme + Java in JavaScript
 
-38. Imperative vs Declarative code
+17. OOP (Object Oriented Programming)
 
-39. Composition vs Inheritance
+18. Private vs Public properties
 
-40. Currying
+19. Functional Programming
 
-41. Partial Application
+20. Immutability
 
-42. Pure Functions
+21. Imperative vs Declarative code
 
-43. Referential Transparency
+22. Composition vs Inheritance
 
-44. Compose
+23. Currying
 
-45. Pipe
+24. Partial Application
 
-46. Error Handling
+25. Pure Functions
 
-47. Asynchronous JavaScript
+26. Referential Transparency
 
-48. Callbacks, Promises, Async/Await
+27. Compose
 
-49. Event Loop + Callback Queue
+28. Pipe
 
-50. Task Queue + Microtask Queue
+29. Error Handling
 
-51. Concurrency + Parallelism
+30. Asynchronous JavaScript
 
-52. Modules in Javascript
+31. Callbacks, Promises, Async/Await
 
-53. Design Patterns: Module, Prototype, Observer, and Singleton design patterns.
+32. Event Loop + Callback Queue
+
+33. Task Queue + Microtask Queue
+
+34. Concurrency + Parallelism
+
+35. Modules in Javascript
+
+36. Design Patterns: Module, Prototype, Observer, and Singleton design patterns.
