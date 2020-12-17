@@ -55,6 +55,7 @@ The call stack helps us keep track of where we are in the code so that we can ru
 
 **6. Stack Overflow + Memory Leaks**: Stack overflow happens when we call functions nested inside each, other over and over again. If we just keep adding functions to the stack without popping them off, we will have a stack overflow. Example: Recursion function will call itself;
 
+
    ```JavaScript
    function inception(){
        inception();
@@ -144,6 +145,24 @@ console.log(y); // 100
 
 **13. Scope Chain**: Links and gives us access to variables that are in our parent environment. Scope is where can I access that variable where's that variable in my code.
 
+
+```JavaScript
+// Scope:
+function sayMyName() {
+  var a = 'a';
+  return function findName() {
+    var b = 'b';
+    console.log(c) // ReferenceError: c is not defined
+    return function printName() {
+      var c = 'c';
+      return 'Andrei Neagoie'
+    }
+  }
+}
+
+sayMyName()()() // Andrei Neagoie
+```
+
 **14. Hoisting**: Hosting is the behavior of moving the variables or function declarations to the top of their respective environments during compilation phase. Variables are partially hoisted and function declarations are hoisted (var and function). Hoisting is a part of the creation phase in the Global Execution Context.
 
 ```JavaScript
@@ -186,7 +205,17 @@ india(); //warm
 
 ```
 
-16. Function Scope vs Block Scope
+**16. Function Scope vs Block Scope**: 
+
+```JavaScript
+//function scope
+function a(){
+  var secret = '12345';
+}
+
+secret; // ReferenceError: secret is not defined
+
+```
 
 17. Dynamic vs Lexical Scope
 
