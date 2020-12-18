@@ -251,6 +251,23 @@ say();
 
 **18.  this - call(), apply(), bind()**: 
 
+- this : this is the object that the function is a property of.
+
+```JavaScript
+const obj = {
+  name: 'Billy',
+  sing() {
+    return 'lalala ' + this.name
+  }
+}
+
+obj.sing(); // lalala Billy
+```
+
+
+
+
+
 **19.  IIFEs**: to avoid a global variable issue we can use an IIFE - an Immediately Invoked Function Expression. 
 
 
@@ -285,6 +302,8 @@ const calculator = (function () {
     }
 })();
 ```
+
+
 By placing functions and variables inside an immediately invoked function expression, you can avoid polluting them to the global object:
 
 4.  Context vs Scope
