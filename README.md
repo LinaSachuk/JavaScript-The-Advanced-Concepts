@@ -254,6 +254,7 @@ say();
 - this : this is the object that the function is a property of.
 
 ```JavaScript
+
 const obj = {
   name: 'Billy',
   sing() {
@@ -262,8 +263,68 @@ const obj = {
 }
 
 obj.sing(); // lalala Billy
+
 ```
 
+- _This_ gives methods access to their object.
+- With _this_  we can execute same code for multiple objects.
+
+```JavaScript
+
+const obj = {
+  name: 'Billy',
+  sing() {
+    return 'lalala ' + this.name
+  },
+  singAgain() {
+    this.sing() + '!'
+  }
+}
+
+obj.singAgain(); // lalala Billy!
+
+```
+
+- call() apply()
+
+```JavaScript
+
+function a() {
+  console.log('hi')
+}
+
+a.call(); // hi
+a.apply() // hi
+a(); //hi
+
+
+// call() and  apply() allow us to use other objects methods with 'this'. call() takes parameters, apply() takes an array of parameters
+
+const wizard = {
+  name: 'Merlin',
+  health: 100,
+  heal: function(num1, num2) {
+    this.health += num1 + num2;
+  }
+}
+
+
+
+const archer = {
+  name: 'Robin Hood',
+  health: 50
+}
+
+wizard.heal.call(archer, 50, 60)
+wizard.heal.apply(archer, [20, 30])
+archer
+// function borrowing
+
+const healArcher = wizard.heal.bind(archer, 50, 60);
+console.log(archer)
+healArcher()
+console.log(archer)
+```
 
 
 
@@ -306,68 +367,68 @@ const calculator = (function () {
 
 By placing functions and variables inside an immediately invoked function expression, you can avoid polluting them to the global object:
 
-4.  Context vs Scope
+1.  Context vs Scope
 
-5.  Static vs Dynamically Typed
+2.  Static vs Dynamically Typed
 
-6.  Primitive Types
+3.  Primitive Types
 
-7.  Pass by Reference vs Pass by Value
+4.  Pass by Reference vs Pass by Value
 
-8.  Type Coercion
+5.  Type Coercion
 
-9.  Arrays, Functions, Objects
+6.  Arrays, Functions, Objects
 
-10. Closures
+7.  Closures
 
-11. Prototypal Inheritance
+8.  Prototypal Inheritance
 
-12. Class Inheritance
+9.  Class Inheritance
 
-13. Memoization
+10. Memoization
 
-14. Higher Order Functions
+11. Higher Order Functions
 
-15. Functions vs Objects
+12. Functions vs Objects
 
-16. Scheme + Java in JavaScript
+13. Scheme + Java in JavaScript
 
-17. OOP (Object Oriented Programming)
+14. OOP (Object Oriented Programming)
 
-18. Private vs Public properties
+15. Private vs Public properties
 
-19. Functional Programming
+16. Functional Programming
 
-20. Immutability
+17. Immutability
 
-21. Imperative vs Declarative code
+18. Imperative vs Declarative code
 
-22. Composition vs Inheritance
+19. Composition vs Inheritance
 
-23. Currying
+20. Currying
 
-24. Partial Application
+21. Partial Application
 
-25. Pure Functions
+22. Pure Functions
 
-26. Referential Transparency
+23. Referential Transparency
 
-27. Compose
+24. Compose
 
-28. Pipe
+25. Pipe
 
-29. Error Handling
+26. Error Handling
 
-30. Asynchronous JavaScript
+27. Asynchronous JavaScript
 
-31. Callbacks, Promises, Async/Await
+28. Callbacks, Promises, Async/Await
 
-32. Event Loop + Callback Queue
+29. Event Loop + Callback Queue
 
-33. Task Queue + Microtask Queue
+30. Task Queue + Microtask Queue
 
-34. Concurrency + Parallelism
+31. Concurrency + Parallelism
 
-35. Modules in Javascript
+32. Modules in Javascript
 
-36. Design Patterns: Module, Prototype, Observer, and Singleton design patterns.
+33. Design Patterns: Module, Prototype, Observer, and Singleton design patterns.
