@@ -2,6 +2,8 @@
 
 https://www.udemy.com/course/advanced-javascript-concepts
 
+https://www.javascripttutorial.net/
+
 ## Some of the topics covered in this course are:
 
 **1. Javascript Engine**: A JavaScript engine is a computer program that executes JavaScript (JS) code. The first JavaScript engines were mere interpreters, but all relevant modern engines use just-in-time compilation for improved performance. JavaScript engines are typically developed by web browser vendors, and every major browser has one.
@@ -245,11 +247,45 @@ say();
 
 
 
-1.  Dynamic vs Lexical Scope
+**17. Dynamic vs Lexical Scope**:
 
-2.  this - call(), apply(), bind()
+**18.  this - call(), apply(), bind()**: 
 
-3.  IIFEs
+**19.  IIFEs**: to avoid a global variable issue we can use an IIFE - an Immediately Invoked Function Expression. 
+
+
+```JavaScript
+//with first parentheses we are saying that this is not a function declaration, it's a function expression. And then after we've created an anonymous function. And then we immediately invoke it. 
+// If we run this, will get : undefined
+(function() {
+
+})(); 
+
+// If we run this, will get SyntaxError: Unexpected token
+function(){}()
+
+// Note that you can use an arrow function to define an IIFE:
+
+(() => {
+    //...
+})();
+
+// The IIFE returns an object that contains the add and multiply methods that reference the add() and multiply() functions.
+const calculator = (function () {
+    function add(a, b) {
+        return a + b;
+    }
+
+    function multiply(a, b) {
+        return a * b;
+    }
+    return {
+        add: add,
+        multiply: multiply
+    }
+})();
+```
+By placing functions and variables inside an immediately invoked function expression, you can avoid polluting them to the global object:
 
 4.  Context vs Scope
 
