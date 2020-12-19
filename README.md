@@ -4,11 +4,13 @@ https://www.udemy.com/course/advanced-javascript-concepts
 
 https://www.javascripttutorial.net/
 
-## Some of the topics covered in this course are:
+## Javascript Engine 
 
-**1. Javascript Engine**: A JavaScript engine is a computer program that executes JavaScript (JS) code. The first JavaScript engines were mere interpreters, but all relevant modern engines use just-in-time compilation for improved performance. JavaScript engines are typically developed by web browser vendors, and every major browser has one.
+A JavaScript engine is a computer program that executes JavaScript (JS) code. The first JavaScript engines were mere interpreters, but all relevant modern engines use just-in-time compilation for improved performance. JavaScript engines are typically developed by web browser vendors, and every major browser has one.
 
-**2. Javascript Runtime**: Javascript runtime refers to where your javascript code is executed when you run it. That said, javascript can be executed on google chrome, in which case your javascript runtime is v8, if on mozilla - it is spidermonkey, if IE - then its chakra and if on node, again its v8. Asynchronous Web APIs provided by browsers (DOM, fetch(), setTimeout())
+## Javascript Runtime
+
+Javascript runtime refers to where your javascript code is executed when you run it. That said, javascript can be executed on google chrome, in which case your javascript runtime is v8, if on mozilla - it is spidermonkey, if IE - then its chakra and if on node, again its v8. Asynchronous Web APIs provided by browsers (DOM, fetch(), setTimeout())
 
    ```JavaScript
    console.log('1');
@@ -44,18 +46,25 @@ console.log(1) and (4) are executed 'in-line' and 2 and 3 are placed in the even
     2
     ```
 
-**3. Interpreter, Compiler, JIT Compiler**: 
-     - AOT compiler - Ahead-of-Time (AOT): compiles before running
-     - JIT compiler - Just-in-Time (JIT) : compiles while running
-     - interpreter: runs - REPL — read-eval-print-loop.
+## Interpreter, Compiler, JIT Compiler
 
-**4. Writing Optimized Code**: So there is a thing called cloud. When we do a webpack build, it gets stored in cloud and our js code gets served from the cloud when user requests it. Now the cloud sends us JavaScript file, which is a junk of text basically and now to make sense it goes through a parser which parses the JavaScript file and converts it to an AST(Abstract Syntax Tree). You can think of AST as data-structure that represents what this code really means.
+- AOT compiler - Ahead-of-Time (AOT): compiles before running
+- JIT compiler - Just-in-Time (JIT) : compiles while running
+- interpreter: runs - REPL — read-eval-print-loop.
+
+## Writing Optimized Code
+
+ So there is a thing called cloud. When we do a webpack build, it gets stored in cloud and our js code gets served from the cloud when user requests it. Now the cloud sends us JavaScript file, which is a junk of text basically and now to make sense it goes through a parser which parses the JavaScript file and converts it to an AST(Abstract Syntax Tree). You can think of AST as data-structure that represents what this code really means.
 Now the V8 compilers take care of rest of the work. So the first step is interpreter which interprets the code and identify the hotspots which I mentioned earlier and generates semi-optimized bytecode. Any code that can be optimized then goes to the optimizing compiler. Then the optimizing compiler analyzes the code and make assumptions to make it even faster. The optimizing compiler generates highly optimized machine code, but we discussed that sometimes it has to de-optimize on runtime and change back to the byte code. Hats off to the naming of V8 team, they really know how to name their engines. The interpreter which generates the bytecode is called Ignition (yes the ignition of the car, i.e. the start) and the optimizing compiler is called TurboFan (turbo boost which speeds up the car).
 
-**5. Call Stack + Memory Heap**: We need the memory heap as a place to store and write information because at the end of the day all programs just read and write operations — that is to allocate, use and release memory.
+## Call Stack + Memory Heap
+
+We need the memory heap as a place to store and write information because at the end of the day all programs just read and write operations — that is to allocate, use and release memory.
 The call stack helps us keep track of where we are in the code so that we can run the code in order.  Every time we run a function we use a call stack. We can think of a call stack as a region in memory that operates in a first in last out mode. So here, it will add the calculate() function on top of the stack. And after we finish running it, it's going to remove it.
 
-**6. Stack Overflow + Memory Leaks**: Stack overflow happens when we call functions nested inside each, other over and over again. If we just keep adding functions to the stack without popping them off, we will have a stack overflow. Example: Recursion function will call itself;
+## Stack Overflow + Memory Leaks
+
+Stack overflow happens when we call functions nested inside each, other over and over again. If we just keep adding functions to the stack without popping them off, we will have a stack overflow. Example: Recursion function will call itself;
 
 
    ```JavaScript
@@ -65,7 +74,7 @@ The call stack helps us keep track of where we are in the code so that we can ru
    inception();
    ```
 
-   3 common memory Leaks:
+### 3 common memory Leaks:
 
 - Global Variables
 
@@ -77,36 +86,42 @@ The call stack helps us keep track of where we are in the code so that we can ru
 
    Here if I just keep adding these variables to my memory, all our memory is will eventually get used up because we are just using up memory. Imagine if these were deeply nested objects, we will be using up a lot of memory.
 
-   - Event Listeners
+- Event Listeners
 
-   ```JavaScript
-   var element = document.getElementById(‘button’)
-   element.addeventListener(‘click’, onClick)
-   ```
+```JavaScript
+var element = document.getElementById(‘button’)
+element.addeventListener(‘click’, onClick)
+```
 
-   This is a common way to leak memory because you can just keep adding event listeners and you don't remove them when you no longer need them. They will stay in the background and before you know, you have a memory leak.
+This is a common way to leak memory because you can just keep adding event listeners and you don't remove them when you no longer need them. They will stay in the background and before you know, you have a memory leak.
 
-   - setInterval()
+- setInterval()
    
-   If we put objects inside a setInterval(), they will never be garbage collected unless we remove the setInterval itself.
+If we put objects inside a setInterval(), they will never be garbage collected unless we remove the setInterval itself.
 
-   ```JavaScript
-   setInterval( () => { //referencing objects })
-   ```
+```JavaScript
+setInterval( () => { //referencing objects })
+```
 
-   So something to keep in mind is that memory is limited. When it comes to a call stack and memory Heap, those are two places is where javascript runs and stores memory. So we have to be careful not to have memory leaks or stack overflow if we are to have efficient code.
+So something to keep in mind is that memory is limited. When it comes to a call stack and memory Heap, those are two places is where javascript runs and stores memory. So we have to be careful not to have memory leaks or stack overflow if we are to have efficient code.
 
-**7. Garbage Collection**: Javascript is a garbage-collected language. This means that if Javascript allocates memory, let's say within a function we create an object and that object gets stored somewhere in our memory heap, automatically when we finish calling that object and if we don't need that object anymore, and there is no reference to it in our program, Javascript is going to clean it up for us. Garbage collection in Javascript uses the Mark and sweep algorithm; when a reference to a variable is removed, its deleted.
+## Garbage Collection
 
-**8. Node.js**: Node.js is a JavaScript runtime built on Chrome's V8 JavaScript engine. It has Global API. It set to be a server side platform based on asynchronous IO that is non blocking.
+Javascript is a garbage-collected language. This means that if Javascript allocates memory, let's say within a function we create an object and that object gets stored somewhere in our memory heap, automatically when we finish calling that object and if we don't need that object anymore, and there is no reference to it in our program, Javascript is going to clean it up for us. Garbage collection in Javascript uses the Mark and sweep algorithm; when a reference to a variable is removed, its deleted.
 
-**9. ES6, ES7, ES8, ES9 features**:
+## Node.js
 
-**10. Single Threaded Model**: Javascript is a single-threaded Programming language(synchronous)
+Node.js is a JavaScript runtime built on Chrome's V8 JavaScript engine. It has Global API. It set to be a server side platform based on asynchronous IO that is non blocking.
+
+## ES6, ES7, ES8, ES9 features
+
+## Single Threaded Model
+
+Javascript is a single-threaded Programming language(synchronous)
 This means that only one set of instructions is executed at any single time. It’s not doing multiple things. The best way to check if a language is single-threaded is if it has one call stack. We push and pop functions off the stack one by one. And so Javascript is synchronous — only one thing can happen at a time.
 
-**11. Execution Context**: 
-    
+## Execution Context
+ 
 ```JavaScript
 let x = 10;
 function timesTen(a){
@@ -116,37 +131,40 @@ let y = timesTen(x);
 console.log(y); // 100
 ```
 
-   1. The creation phase.
-  When a script executes for the first time, the JavaScript engine creates a Global Execution Context. During this creation phase, it performs the following tasks:
-  ![alt tag](https://cdn.javascripttutorial.net/wp-content/uploads/2019/12/javascript-execution-context-global-execution-context-in-creation-phase.png)
+1. The creation phase.
+When a script executes for the first time, the JavaScript engine creates a Global Execution Context. During this creation phase, it performs the following tasks:
+![alt tag](https://cdn.javascripttutorial.net/wp-content/uploads/2019/12/javascript-execution-context-global-execution-context-in-creation-phase.png)
 
 
-        - Create a global object i.e., window in the web browser or global in Node.js.
-        - Create a this object binding which points to the global object above.
-        - Setup a memory heap for storing variables and function references.
-        - Store the function declarations in the memory heap and variables within the global
-        - execution context with the initial values as undefined.
-        - Hoisting
+  - Create a global object i.e., window in the web browser or global in Node.js.
+  - Create a this object binding which points to the global object above.
+  - Setup a memory heap for storing variables and function references.
+  - Store the function declarations in the memory heap and variables within the global
+  - execution context with the initial values as undefined.
+  - Hoisting
 
-   2. The execution phase.
-    During the execution phase, the JavaScript engine executes the code line by line. In this phase, it assigns values to variables and executes the function calls.
+2. The execution phase.
+During the execution phase, the JavaScript engine executes the code line by line. In this phase, it assigns values to variables and executes the function calls.
 
-  ![alt tag](https://cdn.javascripttutorial.net/wp-content/uploads/2019/12/javascript-execution-context-global-execution-context-in-execution-phase.png)
+![alt tag](https://cdn.javascripttutorial.net/wp-content/uploads/2019/12/javascript-execution-context-global-execution-context-in-execution-phase.png)
 
  For every function call, the JavaScript engine creates a new Function Execution Context. The Function Execution Context is similar to the Global Execution Context, but instead of creating the global object, it creates the arguments object that contains a reference to all the parameters passed into the function.
 
-  ![alt tag](https://cdn.javascripttutorial.net/wp-content/uploads/2019/12/javascript-execution-context-function-execution-context-in-creation-phase.png)
+![alt tag](https://cdn.javascripttutorial.net/wp-content/uploads/2019/12/javascript-execution-context-function-execution-context-in-creation-phase.png)
 
 
-   ![alt tag](https://cdn.javascripttutorial.net/wp-content/uploads/2019/12/javascript-execution-context-function-execution-context-in-execution-phase.png)
+![alt tag](https://cdn.javascripttutorial.net/wp-content/uploads/2019/12/javascript-execution-context-function-execution-context-in-execution-phase.png)
 
-  To keep track of all the execution contexts including the Global Execution Context and Function Execution Contexts, the JavaScript engine uses a data structure named call stack
+To keep track of all the execution contexts including the Global Execution Context and Function Execution Contexts, the JavaScript engine uses a data structure named call stack
     
 
-**12. Lexical Environment**: In JavaScript our lexical scope (available data + variables where the function was defined) determines our available variables. Not where the function is called (dynamic scope). The very first lexical environment is the global lexical environment where we write our code.
+## Lexical Environment
 
-**13. Scope Chain**: Links and gives us access to variables that are in our parent environment. Scope is where can I access that variable where's that variable in my code.
+In JavaScript our lexical scope (available data + variables where the function was defined) determines our available variables. Not where the function is called (dynamic scope). The very first lexical environment is the global lexical environment where we write our code.
 
+## Scope Chain
+
+Links and gives us access to variables that are in our parent environment. Scope is where can I access that variable where's that variable in my code.
 
 ```JavaScript
 // Scope:
@@ -165,7 +183,9 @@ function sayMyName() {
 sayMyName()()() // Andrei Neagoie
 ```
 
-**14. Hoisting**: Hosting is the behavior of moving the variables or function declarations to the top of their respective environments during compilation phase. Variables are partially hoisted and function declarations are hoisted (var and function). Hoisting is a part of the creation phase in the Global Execution Context.
+## Hoisting
+
+Hosting is the behavior of moving the variables or function declarations to the top of their respective environments during compilation phase. Variables are partially hoisted and function declarations are hoisted (var and function). Hoisting is a part of the creation phase in the Global Execution Context.
 
 ```JavaScript
 //during hosting one = undefined; will ignore a second declaration, because already assigned to equal undefined.
@@ -187,7 +207,9 @@ function a(){
 
 ```
 
-**15. Function Invocation**: we are telling JavaScript engine to run our function. 
+## Function Invocation
+
+ When we are telling JavaScript engine to run our function. 
 
 ```JavaScript
 //Function Expression
@@ -207,12 +229,11 @@ india(); //warm
 
 ```
 
-**16. Function Scope vs Block Scope**: 
+## Function Scope vs Block Scope
 
 - When you execute a script, the JavaScript engine creates a global execution context. It also assigns variables that you declare outside of functions to the global execution context. These variables are in the global scope. They are also known as global variables.
 
 - Variables that you declare inside a function are local to the function. They are called local variables.
-
 
 ```JavaScript
 //function scope
@@ -245,11 +266,9 @@ function say(message) {
 say();
 ```
 
+## Dynamic vs Lexical Scope
 
-
-**17. Dynamic vs Lexical Scope**:
-
-**18.  this - call(), apply(), bind()**: 
+##  this - call(), apply(), bind()
 
 - this : this is the object that the function is a property of.
 
@@ -308,8 +327,6 @@ const wizard = {
   }
 }
 
-
-
 const archer = {
   name: 'Robin Hood',
   health: 50
@@ -319,18 +336,29 @@ wizard.heal.call(archer, 50, 60)
 wizard.heal.apply(archer, [20, 30])
 archer
 // function borrowing
-
+// bind() returns a function , store and we can use it later
 const healArcher = wizard.heal.bind(archer, 50, 60);
 console.log(archer)
 healArcher()
 console.log(archer)
+
+// function currying
+function multiply(a, b) {
+    return a*b;
+}
+
+var multipleByTwo = multiply.bind(this, 2);
+console.log(multipleByTwo(4)); //8
+
+var multipleByThree = multiply.bind(this, 3);
+console.log(multipleByThree(4)); //12
+
+
 ```
 
+##  IIFEs
 
-
-
-**19.  IIFEs**: to avoid a global variable issue we can use an IIFE - an Immediately Invoked Function Expression. 
-
+To avoid a global variable issue we can use an IIFE - an Immediately Invoked Function Expression. 
 
 ```JavaScript
 //with first parentheses we are saying that this is not a function declaration, it's a function expression. And then after we've created an anonymous function. And then we immediately invoke it. 
@@ -364,18 +392,31 @@ const calculator = (function () {
 })();
 ```
 
-
 By placing functions and variables inside an immediately invoked function expression, you can avoid polluting them to the global object:
 
-1.  Context vs Scope
+### Context vs Scope
 
-2.  Static vs Dynamically Typed
+- Context is most often determined by how a function is invoked with the value of _this_ keyword. 
+- Scope refers to the visibility of variables.
 
-3.  Primitive Types
+### Static vs Dynamically Typed
 
-4.  Pass by Reference vs Pass by Value
+## JavaScript Types
 
-5.  Type Coercion
+1. Boolean
+2. Number
+2. String
+3. Null
+5. Undefined
+6. symbol
+7. object
+
+
+## Primitive Types
+
+**23. Pass by Reference vs Pass by Value**:
+
+**24. Type Coercion**:
 
 6.  Arrays, Functions, Objects
 
