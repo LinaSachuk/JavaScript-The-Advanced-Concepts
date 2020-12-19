@@ -405,14 +405,38 @@ By placing functions and variables inside an immediately invoked function expres
 
 1. Boolean
 2. Number
-2. String
-3. Null
-5. Undefined
-6. symbol
-7. object
+3. String
+4. Null // the absence of value
+5. Undefined // the absence of definition (there is a variable there but there's nothing there)
+6. Symbol
+7. Object
+
+## Primitive Types, Non-Primitive Types
+
+It is a data that only represents a single value.
+
+```JavaScript
+// Primitive
+typeof 5 //number
+typeof true // boolean
+typeof 'To be or not to be' // string
+typeof undefined // undefined
+typeof Symbol('just me') // symbol
+
+// Non-Primitive
+// This object does not actually contain the value here directly. Instead it has a reference similar to a pointer to somewhere in a memory.
+const obj1 = { 
+  a: 'Tom'
+  } 
+typeof {} // object
+typeof [] // object
+typeof function(){} // object
 
 
-## Primitive Types
+
+```
+
+
 
 **23. Pass by Reference vs Pass by Value**:
 
