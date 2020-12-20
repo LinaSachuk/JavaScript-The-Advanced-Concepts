@@ -401,6 +401,36 @@ By placing functions and variables inside an immediately invoked function expres
 
 ### Static vs Dynamically Typed
 
+JavaScript is dynamically typed. A dynamically typed language allows us to not have to say what type of variable this variable _a_ is going to be. In dynamically typed languages type checking is done during runtime. JavaScript gets run on the browser in the runtime or in JIT - Just In Time compilation.
+
+
+```JavaScript
+var a = 'booyaaa';
+// JS is a weakly typed language 
+a + 17 // booyaaa17
+
+```
+
+In a statically typed language, like C++ we have to say what kind of type this variable is going to be. With a statically typed language we have to declare the variables explicitly before using them. 
+
+- Pros
+
+1. Statically typed languages are self documenting. 
+2. Autocompletion in editors.
+3. Less bugs in production.
+
+- Cons
+
+1. Harder to read code and it taked time to learn.
+2. Slower developing process.
+
+```C++
+int a;
+a = 100;
+```
+
+
+
 ## JavaScript Types
 
 1. Boolean
@@ -432,16 +462,16 @@ typeof {} // object
 typeof [] // object
 typeof function(){} // object
 
-
-
 ```
 
 
 
 ## Pass by Reference vs Pass by Value
 
+- Pass by value means we copy the value and we create that value somewhere else in the memory.
+
 ```JavaScript
-//pass by value means we copy the value and we create that value somewhere else in the memory.
+//pass by value 
 var a = 5;
 var b = a;
 
@@ -449,8 +479,13 @@ b++;
 
 console.log(a); // 5
 console.log(b); // 6
+```
 
-//pass by reference : obj1 and obj2 are both pointing somewhere in memory to the same shelg that contains this information {name: "Yao", password: '123'}; Saving a memory by pointing to one object, but can be bad where by mistake somebody else changes a property on that referenced object.
+- Pass by reference : obj1 and obj2 are both pointing somewhere in memory to the same shelg that contains this information {name: "Yao", password: '123'}; Saving a memory by pointing to one object, but can be bad where by mistake somebody else changes a property on that referenced object.
+
+
+```JavaScript
+//pass by reference 
 let obj1 = {name: "Yao", password: '123'};
 let obj2 = obj1;
 
@@ -459,22 +494,31 @@ obj2.password = "easypeasy";
 console.log(obj1); // {name: "Yao", password: "easypeasy"}
 console.log(obj2); // {name: "Yao", password: "easypeasy"}
 
-
-
-
-
-
-
-
 ```
 
-**24. Type Coercion**:
+## Type Coercion
 
-6.  Arrays, Functions, Objects
+Type coercion is the process of converting value from one type to another (such as string to number, object to boolean, and so on). Any type, be it primitive or an object, is a valid subject for type coercion. To recall, primitives are: number, string, boolean, null, undefined + Symbol (added in ES6).
 
-7.  Closures
+```JavaScript
+15 + 3 + "number" 
+==> 18 + "number" 
+==> "18number"
 
-8.  Prototypal Inheritance
+
+// coercion
+1 == '1' // true
+1 === '1' // false
+-0 === +0 // true
+Object.is(-0, +0) // false 
+```
+
+
+1.  Arrays, Functions, Objects
+
+2.  Closures
+
+3.  Prototypal Inheritance
 
 9.  Class Inheritance
 

@@ -103,4 +103,35 @@ const obj2 = { name: 'Jacob', importantPerson: importantPerson }
 
 obj2.importantPerson()
 //   ======================================
+// object cloning
+var c = [1, 2, 3];
+var d = c;
+d.push(4);
 
+console.log(c);   // [1,2,3,4]
+console.log(d);   // [1,2,3,4]
+
+var a = 5;
+var b = a;
+
+b++;
+
+let obj = {
+    a: 'a',
+    b: 'b',
+    c: {
+        deep: 'try and copy me'
+    }
+};
+// shallow cloning
+let clone = Object.assign({}, obj);
+let clone2 = { ...obj } // spread operator
+
+// deep cloning
+let superClone = JSON.parse(JSON.stringify(obj))
+
+obj.c.deep = 'hahaha';
+console.log(obj) // { a: 'a', b: 'b', c: { deep: 'hahaha' } }
+console.log(clone) // { a: 'a', b: 'b', c: { deep: 'hahaha' } }
+console.log(clone2)// { a: 'a', b: 'b', c: { deep: 'hahaha' } }
+console.log(superClone) // { a: 'a', b: 'b', c: { deep: 'try and copy me' } }
