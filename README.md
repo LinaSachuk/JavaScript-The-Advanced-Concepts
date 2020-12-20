@@ -438,7 +438,35 @@ typeof function(){} // object
 
 
 
-**23. Pass by Reference vs Pass by Value**:
+## Pass by Reference vs Pass by Value
+
+```JavaScript
+//pass by value means we copy the value and we create that value somewhere else in the memory.
+var a = 5;
+var b = a;
+
+b++;
+
+console.log(a); // 5
+console.log(b); // 6
+
+//pass by reference : obj1 and obj2 are both pointing somewhere in memory to the same shelg that contains this information {name: "Yao", password: '123'}; Saving a memory by pointing to one object, but can be bad where by mistake somebody else changes a property on that referenced object.
+let obj1 = {name: "Yao", password: '123'};
+let obj2 = obj1;
+
+obj2.password = "easypeasy";
+
+console.log(obj1); // {name: "Yao", password: "easypeasy"}
+console.log(obj2); // {name: "Yao", password: "easypeasy"}
+
+
+
+
+
+
+
+
+```
 
 **24. Type Coercion**:
 
