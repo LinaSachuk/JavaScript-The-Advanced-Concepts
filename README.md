@@ -513,24 +513,69 @@ Type coercion is the process of converting value from one type to another (such 
 Object.is(-0, +0) // false 
 ```
 
+## Arrays, Functions, Objects
 
-1.  Arrays, Functions, Objects
 
-2.  Closures
 
-3.  Prototypal Inheritance
 
-9.  Class Inheritance
 
-10. Memoization
+## Closures
 
-11. Higher Order Functions
+## Prototypal Inheritance
 
-12. Functions vs Objects
 
-13. Scheme + Java in JavaScript
+## Class Inheritance
+ 
+## Memoization
 
-14. OOP (Object Oriented Programming)
+## Higher Order Functions
+
+## Functions vs Objects
+
+Functions are a special type of object that is a callable object with the bracket notation for invoking the function, it contains the code, it has name and it also has some properties like call(), apply() and bind().
+
+```JavaScript
+function woohoo() {
+  console.log('woooohooo');
+}
+
+woohoo.name // 'woohoo'
+```
+
+Functions can be passed around, thats why functions are a first class citizen in JavaScript.
+
+1. Functions can be assign to a variable or even an object property, which them becomes a method.
+
+2. We can also pass functions as arguments into a function.
+
+3. We can return functions as a values from other functions.
+
+
+```JavaScript
+
+// 1
+var staff = function () {}
+
+// 2
+function a(fn) {
+  fn()
+}
+
+a(function() {console.log('hi there')}) // hi there
+
+// 3
+function b(){
+  return function c() { console.log('bye')}
+}
+
+b()() // bye
+```
+
+
+
+## Scheme + Java in JavaScript
+
+##  OOP (Object Oriented Programming)
 
 15. Private vs Public properties
 
