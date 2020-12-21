@@ -521,6 +521,39 @@ Object.is(-0, +0) // false
 
 ## Closures
 
+In JavaScript, a closure is a function that references variables in the outer scope from its inner scope. The closure preserves the outer scope inside its inner scope.
+
+```JavaScript
+function greeting() {
+    let message = 'Hi';
+
+    function sayHi() {
+        console.log(message);
+    }
+
+    return sayHi;
+}
+let hi = greeting();
+hi(); // still can access the message variable
+```
+function inside the greeting() function, the greeting() function returns the sayHi() function object.
+
+Note that functions are the first-class citizens in JavaScript, therefore, you can return a function from another function.
+
+Outside of the greeting() function, we assigned the hi variable the value returned by the greeting() function, which is a reference of the sayHi() function.
+
+Then we executed the sayHi() function using the reference of that function: hi(). If you run the code, you will get the same effect as the one above.
+
+However, the interesting point here is that, normally, a local variable only exists during the execution of the function.
+
+It means that when the greeting() function has completed executing, the message variable is no longer accessible.
+
+In this case, we execute the hi() function that references the sayHi() function, the message variable still exists.
+
+The magic of this is closure. In other words, the sayHi() function is a closure.
+
+A closure is a function that preserves the outer scope in its inner scope.
+
 ## Prototypal Inheritance
 
 
@@ -529,6 +562,27 @@ Object.is(-0, +0) // false
 ## Memoization
 
 ## Higher Order Functions
+
+Higher order function is a function that can take a function as an argument or a function that returns another function.
+
+```JavaScript
+const multiplyBy = function(num1) {
+  return function(num2) {
+    return num1 * num2
+  }
+}
+
+const multiplyByTwo = multiplyBy(2);
+const multiplyByFive = multiplyBy(5);
+
+multiplyByTwo(3) // 6
+multiplyByFive(5) // 25
+
+// same function but with arrow functions
+const multiplyBy = (num1) => (num2) => num1 * num2
+
+multiplyBy(4)(6) //24
+```
 
 ## Functions vs Objects
 
@@ -550,7 +604,6 @@ Functions can be passed around, thats why functions are a first class citizen in
 
 3. We can return functions as a values from other functions.
 
-
 ```JavaScript
 
 // 1
@@ -571,15 +624,13 @@ function b(){
 b()() // bye
 ```
 
-
-
 ## Scheme + Java in JavaScript
 
-##  OOP (Object Oriented Programming)
+## OOP (Object Oriented Programming)
 
-15. Private vs Public properties
+## Private vs Public properties
 
-16. Functional Programming
+## Functional Programming
 
 17. Immutability
 
