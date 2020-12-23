@@ -572,7 +572,7 @@ getHeavyDuty(699)
 getHeavyDuty(699)
 getHeavyDuty(699)
 
-// but i dont want to pollute the global namespace..
+// but i don't want to pollute the global namespace..
 function heavyDuty2() {
   const bigArray = new Array(7000).fill('😄')
   console.log('created Again!')
@@ -580,6 +580,26 @@ function heavyDuty2() {
     return bigArray[item]
   }
 }
+
+
+
+// Encapsulation
+const makeNuclearButton = () => {
+  let timeWithoutDestruction = 0;
+  const passTime = () => timeWithoutDestruction++;
+  const totalPeaceTime = () => timeWithoutDestruction;
+  const launch = () => {
+    timeWithoutDestruction = -1;
+    return '💥';
+  }
+
+  setInterval(passTime, 1000);
+  return {totalPeaceTime}
+}
+
+const ww3 = makeNuclearButton();
+ww3.totalPeaceTime()
+
 ```
 
 ## Prototypal Inheritance
