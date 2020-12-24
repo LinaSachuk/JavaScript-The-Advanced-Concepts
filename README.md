@@ -621,6 +621,19 @@ for(var i=0; i < array.length; i++) {
 
 ## Prototypal Inheritance
 
+ JavaScript prototype is one of the most important concepts that every JavaScript developer must understand.
+
+By default, the JavaScript engine provides the Object() function and an anonymous object that can be referenced via the Object.prototype.
+
+```JavaScript
+console.log(Object);
+console.log(Object.prototype);
+```
+![alt tag](https://cdn.javascripttutorial.net/wp-content/uploads/2020/03/JavaScript-Prototype-Object-function-and-Object-Object.png)
+
+
+
+
 
 ## Class Inheritance
  
