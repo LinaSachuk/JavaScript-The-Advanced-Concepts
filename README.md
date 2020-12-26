@@ -629,7 +629,17 @@ By default, the JavaScript engine provides the Object() function and an anonymou
 console.log(Object);
 console.log(Object.prototype);
 ```
+
 ![alt tag](https://cdn.javascripttutorial.net/wp-content/uploads/2020/03/JavaScript-Prototype-Object-function-and-Object-Object.png)
+
+The Object.prototype object has many built-in methods and properties such as toString(), valueOf(), etc.
+
+And it has a property named constructor that references the Object() function:
+
+```JavaScript
+console.log(Object.prototype.constructor === Object); // true
+```
+
 
 
 
