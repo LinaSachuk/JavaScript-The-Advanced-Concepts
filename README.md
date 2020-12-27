@@ -640,6 +640,7 @@ And it has a property named constructor that references the Object() function:
 console.log(Object.prototype.constructor === Object); // true
 ```
 
+Inheritance is an object getting access to the properties ans methods of another object.
 
 
 
