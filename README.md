@@ -685,7 +685,29 @@ Person.prototype.name = function() {
   return this.firstName + " " + this.lastName;
 };
 ```
+
 Only modify your own prototypes. Never modify the prototypes of standard JavaScript objects.
+Did You Know?
+As you can see above, JavaScript has object versions of the primitive data types String, Number, and Boolean. But there is no reason to create complex objects. Primitive values are much faster.
+
+ALSO:
+
+- Use object literals {} instead of new Object().
+
+- Use string literals "" instead of new String().
+
+- Use number literals 12345 instead of new Number().
+
+- Use boolean literals true / false instead of new Boolean().
+
+- Use array literals [] instead of new Array().
+
+- Use pattern literals /()/ instead of new RegExp().
+
+- Use function expressions () {} instead of new Function().
+
+
+
 
 
 
