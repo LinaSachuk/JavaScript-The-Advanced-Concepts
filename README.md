@@ -670,6 +670,25 @@ Date objects, Array objects, and Person objects inherit from Object.prototype.
 
 
 
+```JavaScript
+function Person(first, last, age, eyecolor) {
+  this.firstName = first;
+  this.lastName = last;
+  this.age = age;
+  this.eyeColor = eyecolor;
+}
+// The JavaScript prototype property allows you to add new properties to object constructors:
+Person.prototype.nationality = "English";
+
+// The JavaScript prototype property also allows you to add new methods to objects constructors:
+Person.prototype.name = function() {
+  return this.firstName + " " + this.lastName;
+};
+```
+Only modify your own prototypes. Never modify the prototypes of standard JavaScript objects.
+
+
+
 
 
 
