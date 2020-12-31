@@ -707,6 +707,29 @@ ALSO:
 - Use function expressions () {} instead of new Function().
 
 
+----------------------------------------------------------------
+String Objects
+Normally, strings are created as primitives: var firstName = "John"
+
+But strings can also be created as objects using the new keyword: var firstName = new String("John")
+
+----------------------------------------
+
+Number Objects
+Normally, numbers are created as primitives: var x = 123
+
+But numbers can also be created as objects using the new keyword: var x = new Number(123)
+
+-----------------------------
+
+Boolean Objects
+Normally, booleans are created as primitives: var x = false
+
+But booleans can also be created as objects using the new keyword: var x = new Boolean(false)
+
+
+
+
 
 
 
