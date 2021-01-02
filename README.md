@@ -730,10 +730,139 @@ Normally, booleans are created as primitives: var x = false
 But booleans can also be created as objects using the new keyword: var x = new Boolean(false)
 
 
+-----------------------
 
 
 
+ES5 New Object Methods:
 
+
+```JavaScript
+// Adding or changing an object property
+Object.defineProperty(object, property, descriptor)
+
+// Adding or changing many object properties
+Object.defineProperties(object, descriptors)
+
+// Accessing Properties
+Object.getOwnPropertyDescriptor(object, property)
+
+// Returns all properties as an array
+Object.getOwnPropertyNames(object)
+
+// Returns enumerable properties as an array
+Object.keys(object)
+
+// Accessing the prototype
+Object.getPrototypeOf(object)
+
+// Prevents adding properties to an object
+Object.preventExtensions(object)
+// Returns true if properties can be added to an object
+Object.isExtensible(object)
+
+// Prevents changes of object properties (not values)
+Object.seal(object)
+// Returns true if object is sealed
+Object.isSealed(object)
+
+// Prevents any changes to an object
+Object.freeze(object)
+// Returns true if object is frozen
+Object.isFrozen(object)
+
+
+```
+
+
+1. Changing a Property Value
+
+```JavaScript
+// Adding or changing an object property
+Object.defineProperty(object, property, descriptor)
+
+// Syntax
+Object.defineProperty(object, property, {value : value})
+
+// Example
+var person = {
+  firstName: "John",
+  lastName : "Doe",
+  language : "EN"
+};
+
+// Change a property
+Object.defineProperty(person, "language", {value : "NO"});
+
+```
+
+2. Changing Meta Data
+ES5 allows the following property meta data to be changed:
+
+```JavaScript
+writable : true      // Property value can be changed
+enumerable : true    // Property can be enumerated
+configurable : true  // Property can be reconfigured
+writable : false     // Property value can not be changed
+enumerable : false   // Property can be not enumerated
+configurable : false // Property can be not reconfigured
+
+```
+ES5 allows getters and setters to be changed:
+
+```JavaScript
+// Defining a getter
+get: function() { return language }
+// Defining a setter
+set: function(value) { language = value }
+```
+
+This example makes language read-only:
+
+```JavaScript
+Object.defineProperty(person, "language", {writable:false});
+```
+
+This example makes language not enumerable:
+
+
+```JavaScript
+Object.defineProperty(person, "language", {enumerable:false});
+
+```
+
+3. Listing All Properties
+
+  This example list all properties of an object:
+
+```JavaScript
+var person = {
+  firstName: "John",
+  lastName : "Doe",
+  language : "EN"
+};
+
+Object.getOwnPropertyNames(person);  // Returns an array of properties
+
+```
+
+4. Listing Enumerable Properties
+
+This example list only the enumerable properties of an object:
+
+
+
+```JavaScript
+var person = {
+  firstName: "John",
+  lastName : "Doe",
+  language : "EN"
+};
+
+Object.defineProperty(person, "language", {enumerable:false});
+Object.keys(person);  // Returns an array of enumerable properties
+
+```
 
 
 
