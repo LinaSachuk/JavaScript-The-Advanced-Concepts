@@ -661,16 +661,18 @@ var myMother = new Person("Sally", "Rally", 48, "green");
 
 All JavaScript objects inherit properties and methods from a prototype:
 
-Date objects inherit from Date.prototype
-Array objects inherit from Array.prototype
-Person objects inherit from Person.prototype
-The Object.prototype is on the top of the prototype inheritance chain:
+1. Date objects inherit from Date.prototype
+2. Array objects inherit from Array.prototype
+3. Person objects inherit from Person.prototype
+4. The Object.prototype is on the top of the prototype inheritance chain:
 
 Date objects, Array objects, and Person objects inherit from Object.prototype.
 
 
+The JavaScript prototype property allows you to add new properties to object constructors:
 
 ```JavaScript
+// an object constractor
 function Person(first, last, age, eyecolor) {
   this.firstName = first;
   this.lastName = last;
