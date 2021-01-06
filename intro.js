@@ -135,3 +135,12 @@ console.log(obj) // { a: 'a', b: 'b', c: { deep: 'hahaha' } }
 console.log(clone) // { a: 'a', b: 'b', c: { deep: 'hahaha' } }
 console.log(clone2)// { a: 'a', b: 'b', c: { deep: 'hahaha' } }
 console.log(superClone) // { a: 'a', b: 'b', c: { deep: 'try and copy me' } }
+
+
+
+
+// ----------------
+// Create our own prototypes:
+var human = { mortal: true }
+var socrates = Object.create(human);
+human.isPrototypeOf(socrates); // true
