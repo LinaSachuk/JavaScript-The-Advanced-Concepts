@@ -989,13 +989,18 @@ function b(){
 b()() // bye
 ```
 
-## Scheme + Java in JavaScript
+## OOP (Object Oriented Programming) 
 
-## OOP (Object Oriented Programming)
+OOP says that bringing together the data and its behavior in a single location called an object and containing all of that in a box makes it easier to understand how out programs work.
+
+
+
 
 ## Private vs Public properties
 
 ## Functional Programming
+
+FP says that data and behavior are distinctly different things and should be kept separate for clarity.
 
 17. Immutability
 
