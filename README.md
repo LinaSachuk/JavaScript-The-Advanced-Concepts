@@ -992,6 +992,7 @@ b()() // bye
 ## OOP (Object Oriented Programming) 
 
 OOP says that bringing together the data and its behavior in a single location called an object and containing all of that in a box makes it easier to understand how out programs work.
+The beauty of Javascropt is that it is multi paradigm and we can use OOP and FP techniques to make our code easy to reason about, to make it clearer, to make it more understandable and easy to extend.
 
 
 
