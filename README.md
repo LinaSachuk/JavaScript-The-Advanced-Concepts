@@ -995,6 +995,24 @@ OOP says that bringing together the data and its behavior in a single location c
 The beauty of Javascropt is that it is multi paradigm and we can use OOP and FP techniques to make our code easy to reason about, to make it clearer, to make it more understandable and easy to extend.
 
 
+```JavaScript
+// In OOP this data called state. The object attributes or properties allows to keep track of the state of the object and these methods allow us mamipulate the state of the object.
+let dragon = {
+  name: 'Tanya',
+  fire: true,
+  fight() {
+    return 5
+  }, 
+  sing() {
+    if (this.fire) {
+      return `I am ${this.name}, the breather of fire`
+    }
+  }
+}
+
+
+```
+
 
 
 ## Private vs Public properties
