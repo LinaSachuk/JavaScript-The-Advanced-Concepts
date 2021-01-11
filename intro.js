@@ -161,4 +161,21 @@ Date.prototype.lastYear = function () {
 }
 
 new Date('1900-10-10').lastYear()
-  // don't worry if you didn't get this... we will expand on this later.
+// don't worry if you didn't get this... we will expand on this later.
+
+
+// factory function make/create obect for us
+function createElf(name, weapon) {
+    //we can also have closures here to hide properties from being changed.
+    return {
+        name: name,
+        weapon: weapon,
+        atack() {
+            return 'atack with ' + weapon
+        }
+    }
+}
+const sam = createElf('Sam', 'bow');
+const peter = createElf('Peter', 'fire');
+
+sam.atack()

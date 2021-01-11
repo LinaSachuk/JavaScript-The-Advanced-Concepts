@@ -1012,7 +1012,35 @@ let dragon = {
 
 
 ```
+## Encapsulation
 
+Encapsulation is the bundling of data and the methods that act on that data such that access to that data is restricted from outside the bundle, or as Alan Kay describes it, “local retention and protection and hiding of state-process.” In OOP, that means that an object stores its state privately, and only the object’s methods have access to change it.
+
+If you want to change encapsulated state, you don’t reach out and directly mutate some object’s props. Instead, you call a method on the object, and maybe the object will respond by updating its state.
+
+When you want to update React component state with useState or setState, those changes don't directly manipulate the component state. Instead, they may enqueue potential state changes which get applied after the render cycle has completed. You don't directly set React's component state; React does.
+
+From Java, JavaScript got the notion of constructor functions, (eventually) classes, and the new keyword (among other things).
+
+```JavaScript
+
+// factory function make/create obect for us
+function createElf(name, weapon) {
+    //we can also have closures here to hide properties from being changed.
+    return {
+        name: name,
+        weapon: weapon,
+        atack() {
+            return 'atack with ' + weapon
+        }
+    }
+}
+const sam = createElf('Sam', 'bow');
+const peter = createElf('Peter', 'fire');
+
+sam.atack()
+
+```
 
 
 ## Private vs Public properties
