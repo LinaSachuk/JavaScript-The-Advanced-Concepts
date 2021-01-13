@@ -1010,8 +1010,8 @@ let dragon = {
   }
 }
 
-
 ```
+
 ## Encapsulation
 
 Encapsulation is the bundling of data and the methods that act on that data such that access to that data is restricted from outside the bundle, or as Alan Kay describes it, “local retention and protection and hiding of state-process.” In OOP, that means that an object stores its state privately, and only the object’s methods have access to change it.
@@ -1055,10 +1055,41 @@ function createElf(name, weapon) {
 }
 
 
+
 const sam = createElf('Sam', 'bow');
 const peter = createElf('Peter', 'fire');
 sam.attack()
 
+
+// ================================
+//Constructor Functions
+function Elf(name, weapon) {
+  this.name = name;
+  this.weapon = weapon;
+}
+
+Elf.prototype.attack = function() { 
+  return 'atack with ' + this.weapon
+}
+const sam = new Elf('Sam', 'bow');
+const peter = new Elf('Peter', 'bow');
+sam.attack()
+
+// ===============ES6 Class
+class Elf {
+  constructor(name, weapon) {
+    this.name = name;
+    this.weapon = weapon;
+  }
+  attack() {
+    return 'atack with ' + this.weapon
+  }
+}
+
+const fiona = new Elf('Fiona', 'ninja stars');
+console.log(fiona instanceof Elf) // 
+const ben = new Elf('Ben', 'bow');
+fiona.attack()
 
 
 
@@ -1071,36 +1102,36 @@ sam.attack()
 
 FP says that data and behavior are distinctly different things and should be kept separate for clarity.
 
-17. Immutability
+## Immutability
 
-18. Imperative vs Declarative code
+## Imperative vs Declarative code
 
-19. Composition vs Inheritance
+## Composition vs Inheritance
 
-20. Currying
+## Currying
 
-21. Partial Application
+## Partial Application
 
-22. Pure Functions
+## Pure Functions
 
-23. Referential Transparency
+## Referential Transparency
 
-24. Compose
+## Compose
 
-25. Pipe
+## Pipe
 
-26. Error Handling
+## Error Handling
 
-27. Asynchronous JavaScript
+## Asynchronous JavaScript
 
-28. Callbacks, Promises, Async/Await
+## Callbacks, Promises, Async/Await
 
-29. Event Loop + Callback Queue
+## Event Loop + Callback Queue
 
-30. Task Queue + Microtask Queue
+## Task Queue + Microtask Queue
 
-31. Concurrency + Parallelism
+## Concurrency + Parallelism
 
-32. Modules in Javascript
+## Modules in Javascript
 
-33. Design Patterns: Module, Prototype, Observer, and Singleton design patterns.
+## Design Patterns: Module, Prototype, Observer, and Singleton design patterns.
