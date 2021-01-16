@@ -354,7 +354,58 @@ var multipleByThree = multiply.bind(this, 3);
 console.log(multipleByThree(4)); //12
 
 
+
+// new binding
+function Person(name, age) {
+  this.name = name;
+  this.age =age;
+  console.log(this);
+}
+
+const person1 = new Person('Xavier', 55)
+
+//implicit binding
+const person = {
+  name: 'Karen',
+  age: 40,
+  hi() {
+    console.log('hi' + this.name)
+  }
+}
+
+person.hi()
+
+//explicit binding
+const person3 = {
+  name: 'Karen',
+  age: 40,
+  hi: function() {
+    console.log('hi' + this.setTimeout)
+  }.bind(window)
+}
+
+person3.hi()
+
+// arrow functions
+const person4 = {
+  name: 'Karen',
+  age: 40,
+  hi: function() {
+    var inner = () => {
+      console.log('hi ' + this.name)
+    }
+    return inner()
+  }
+}
+
+person4.hi()
+
 ```
+
+
+
+
+
 
 ##  IIFEs
 
@@ -923,6 +974,43 @@ typeof {}
 
 
 ## Class Inheritance
+
+```JavaScript
+class Character {
+  constructor(name, weapon) {
+    this.name = name;
+    this.weapon = weapon;
+  }
+  attack() {
+    return 'atack with ' + this.weapon
+  }
+}
+
+class Elf extends Character { 
+  constructor(name, weapon, type) {
+    // console.log('what am i?', this); this gives an error
+    super(name, weapon) 
+    console.log('what am i?', this);
+    this.type = type;
+  }
+}
+
+class Ogre extends Character {
+  constructor(name, weapon, color) {
+    super(name, weapon);
+    this.color = color;
+  }
+  makeFort() { // this is like extending our prototype.
+    return 'strongest fort in the world made'
+  }
+}
+
+const houseElf = new Elf('Dolby', 'cloth', 'house')
+//houseElf.makeFort() // error
+const shrek = new Ogre('Shrek', 'club', 'green')
+shrek.makeFort()
+
+```
  
 ## Memoization
 
@@ -993,6 +1081,12 @@ b()() // bye
 
 OOP says that bringing together the data and its behavior in a single location called an object and containing all of that in a box makes it easier to understand how out programs work.
 The beauty of Javascropt is that it is multi paradigm and we can use OOP and FP techniques to make our code easy to reason about, to make it clearer, to make it more understandable and easy to extend.
+
+1. Encapsulation
+2. Abstraction
+3. Inheritance
+4. Polymorphism
+
 
 
 ```JavaScript
@@ -1086,8 +1180,9 @@ class Elf {
   }
 }
 
+//Instantiating a class - creting a new instance of the class
 const fiona = new Elf('Fiona', 'ninja stars');
-console.log(fiona instanceof Elf) // 
+console.log(fiona instanceof Elf) // true
 const ben = new Elf('Ben', 'bow');
 fiona.attack()
 
@@ -1098,6 +1193,11 @@ fiona.attack()
 
 ## Private vs Public properties
 
+
+
+
+
+
 ## Functional Programming
 
 FP says that data and behavior are distinctly different things and should be kept separate for clarity.
@@ -1107,6 +1207,8 @@ FP says that data and behavior are distinctly different things and should be kep
 ## Imperative vs Declarative code
 
 ## Composition vs Inheritance
+
+
 
 ## Currying
 
