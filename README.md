@@ -1080,7 +1080,7 @@ b()() // bye
 ## OOP (Object Oriented Programming) 
 
 OOP says that bringing together the data and its behavior in a single location called an object and containing all of that in a box makes it easier to understand how out programs work.
-The beauty of Javascropt is that it is multi paradigm and we can use OOP and FP techniques to make our code easy to reason about, to make it clearer, to make it more understandable and easy to extend.
+The beauty of JavaScript is that it is multi paradigm and we can use OOP and FP techniques to make our code easy to reason about, to make it clearer, to make it more understandable and easy to extend.
 
 1. Encapsulation
 2. Abstraction
@@ -1103,6 +1103,35 @@ let dragon = {
     }
   }
 }
+
+```
+
+```JavaScript
+class Character {
+  constructor(name, weapon) {
+    this.name = name;
+    this.weapon = weapon;
+  }
+  attack() {
+    return 'atack with ' + this.weapon
+  }
+}
+
+class Queen extends Character { 
+  constructor(name, weapon, kind) {
+    super(name, weapon) 
+    this.kind = kind;
+  }
+  attack() {
+    console.log(super.attack()); // atack with army
+    return `I am the ${this.name} of ${this.kind}, now bow down to me! ` // I am the Victoria of hearts, now bow down to me!
+  }
+}
+
+const victoria = new Queen('Victoria', 'army', 'hearts');
+victoria.attack()
+
+
 
 ```
 
