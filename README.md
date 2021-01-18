@@ -1231,6 +1231,8 @@ fiona.attack()
 
 FP says that data and behavior are distinctly different things and should be kept separate for clarity.
 
+Pure Functions - all objects in functional programming are immutable, once something is created it cannot be changed. We avoid things like shared state and we adhere to this principle of pure functions.
+
 ## Immutability
 
 ## Imperative vs Declarative code
