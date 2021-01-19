@@ -1232,6 +1232,33 @@ fiona.attack()
 FP says that data and behavior are distinctly different things and should be kept separate for clarity.
 
 Pure Functions - all objects in functional programming are immutable, once something is created it cannot be changed. We avoid things like shared state and we adhere to this principle of pure functions.
+1. No side effects
+
+```JavaScript
+//Side effects:
+const array = [1,2,3];
+function mutateArray(arr) {
+  arr.pop()
+}
+function mutateArray2(arr) {
+  arr.forEach(item => arr.push(1
+  ))
+}
+//The order of the function calls will matter.
+mutateArray(array) // [1 , 2, ]
+mutateArray2(array) // [1, 2, 1, 1]
+array
+
+
+
+
+```
+
+2. input -> output (always returns the same output with the same input)
+
+
+
+
 
 ## Immutability
 
