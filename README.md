@@ -1014,6 +1014,59 @@ shrek.makeFort()
  
 ## Memoization
 
+Memoization is an optimization technique that speeds up applications by storing the results of expensive function calls and returning the cached result when the same inputs are supplied again.
+
+```JavaScript
+
+//learn to cache
+function addTo80(n) {
+  return n + 80;
+}
+
+addTo80(5)
+
+let cache = {};
+function memoizeAddTo80(n) {
+  if (n in cache) {
+    return cache[n];
+  } else {
+    console.log('long time');
+    const answer = n + 80;
+    cache[n] = answer;
+    return answer;
+  }
+}
+
+// console.log(1, memoizeAddTo80(6))
+// // console.log(cache)
+// // console.log('-----------')
+// console.log(2, memoizeAddTo80(6))
+
+// let's make that better with no global scope. This is closure in javascript so.
+function memoizeAddTo80(n) { 
+  let cache = {};
+  return function(n) {
+    if (n in cache) {
+      return cache[n];
+    } else {
+      console.log('long time');
+      const answer = n + 80;
+      cache[n] = answer;
+      return answer;
+    }
+  }
+}
+
+const memoized = memoizeAddTo80();
+console.log(1, memoized(6))
+// console.log(cache)
+// console.log('-----------')
+console.log(2, memoized(6))
+
+
+```
+
+
 ## Higher Order Functions
 
 Higher order function is a function that can take a function as an argument or a function that returns another function.
@@ -1304,7 +1357,30 @@ for (let i=0; i< 1000; i ++) {
 
 ## Currying
 
+Currying is an advanced technique of working with functions. It's used not only in JavaScript, but in other languages as well. Currying is a transformation of functions that translates a function from callable as f(a, b, c) into callable as f(a)(b)(c) . Currying doesn't call a function. It just transforms it.
+
+```JavaScript
+
+//Currying
+const multiply = (a, b) => a * b
+const curriedMultiply = (a) => (b) => a * b
+curriedMultiply(5)(20)
+const multiplyBy5 = curriedMultiply(5)
+multiplyBy5(20)
+
+```
+
 ## Partial Application
+
+Partial application starts with a function. We take this function and create a new one with one or more of its arguments already “set” or partially applied. This sounds odd, but it will reduce the number of parameters needed for our functions.
+
+```JavaScript
+//Partial Application
+const multiply = (a, b, c) => a * b * c
+const partialMultiplyBy5 = multiply.bind(null, 5)
+partialMultiplyBy5(10, 20)
+
+```
 
 ## Pure Functions
 
