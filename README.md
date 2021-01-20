@@ -1262,7 +1262,41 @@ array
 
 ## Immutability
 
+In object-oriented and functional programming, an immutable object is an object whose state cannot be modified after it is created.
+
+```JavaScript
+
+const obj = {name: 'Andrei'}
+function clone(obj) {
+  return {...obj}; // this is pure
+}
+
+function updateName(obj) {
+  const obj2 = clone
+  (obj);
+  obj2.name = 'Nana'
+  return obj2
+}
+
+const updatedObj = updateName(obj)
+console.log(obj, updatedObj)
+```
+
 ## Imperative vs Declarative code
+
+Declarative programming is a programming paradigm … that expresses the logic of a computation without describing its control flow.
+Imperative programming is a programming paradigm that uses statements that change a program’s state.
+
+```JavaScript
+//imperative
+for (let i=0; i< 1000; i ++) {
+  console.log(i)
+}
+
+
+//declarative
+[1,2,3].forEach(item => console.log(item))
+```
 
 ## Composition vs Inheritance
 
