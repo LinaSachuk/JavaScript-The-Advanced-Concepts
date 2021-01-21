@@ -1693,6 +1693,30 @@ race().then(console.log)
 
 ## Modules in Javascript
 
+Modules - they are highly self-contained and grouped together with their own specific functionality allowing them to be moved around, used by other places or even removed without disrupting the whole system.
+
+
+
+## Async Error Handling
+
+```JavaScript
+// wrap the code in the try-catch block
+(async function() {
+    try {
+        await Promise.reject('oopsie')
+    } catch (err) {
+        console.error(err)
+    }
+
+    console.log('This is still good!')
+})()
+
+```
+
+
+
+
+
 ## Design Patterns: Module, Prototype, Observer, and Singleton design patterns.
 
 
