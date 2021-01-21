@@ -1501,6 +1501,33 @@ function goForward() {
 
 ## Callbacks, Promises, Async/Await
 
+- Callbacks
+
+In JavaScript, a callback is a function passed into another function as an argument to be executed later. Callback functions can be synchronous or asynchronous.
+
+However, this callback strategy does not scale well when the complexity grows significantly.
+
+Nesting many asynchronous functions inside callbacks is known as the pyramid of doom or the callback hell:
+
+```JavaScript
+
+asyncFunction(function(){
+    asyncFunction(function(){
+        asyncFunction(function(){
+            asyncFunction(function(){
+                asyncFunction(function(){
+                    ....
+                });
+            });
+        });
+    });
+});
+
+```
+
+To avoid the pyramid of doom, you use promises or async/await functions.
+
+
 - Promise
 
 In JavaScript, a promise is an object that returns a value which you hope to receive in the future, but not now.
@@ -1513,13 +1540,176 @@ A promise has three states:
 2. Fulfilled: you complete learning JavaScript by the next month.
 3. Rejected: you don’t learn JavaScript at all.
 
+```JavaScript
+
+const promise = new Promise((resolve, reject) => {
+  if(true) {
+    resolve('Stuff worked')
+  } else {
+    reject('Error, it broke')
+  }
+})
+
+const promise2 = new Promise((resolve, reject) => {
+  setTimeout(resolve, 100, 'Hiii')
+})
+
+const promise3 = new Promise((resolve, reject) => {
+  setTimeout(resolve, 1000, 'Pokie')
+})
+
+const promise4 = new Promise((resolve, reject) => {
+  setTimeout(resolve, 3000, 'Is it me you are looking for?')
+})
+
+Promise.all([promise, promise2, promise3, promise4])
+  .then(values => {
+    console.log(values);
+  })
+  .catch(() => console.log('error'))
+  .finally(() => console.log('extra'));
+
+```
+
+
+- Async Await
+
+ES2017 introduced the async/await keywords that build on top of promises, allowing you to write asynchronous code that looks more like synchronous code and more readable. Technically speaking, the async / await is syntactic sugar for promises.
+
+If a function returns a Promise, you can place the await keyword in front of the function call, like this:
+
+```JavaScript
+
+let result = await f();
+
+```
+
+
+The await will wait for the Promise returned from the f() to settle. The await keyword can be used only inside the async functions. 
+
+The async keyword allows you to define a function that handles asynchronous operations. Asynchronous functions execute asynchronously via the event loop. It always returns a Promise.
+
+The following defines an async function that calls the three asynchronous operations in sequence:
+
+```JavaScript
+
+async function showServiceCost() {
+    let user = await getUser(100);
+    let services = await getServices(user);
+    let cost = await getServiceCost(services);
+    console.log(`The service cost is ${cost}`);
+}
+
+showServiceCost();
+
+
+// for await of loop
+const urls = [
+  'https://jsonplaceholder.typicode.com/users',
+  'https://jsonplaceholder.typicode.com/posts',
+  'https://jsonplaceholder.typicode.com/albums'
+
+]
+
+
+const getData = async function() {
+  const arrayOfPromises = urls.map(url => fetch(url));
+  for await (let request of arrayOfPromises) {
+    const data = await request.json();
+    console.log(data);
+  }
+
+}
+
+
+
+
+
+
+```
+
 
 ## Event Loop + Callback Queue
 
-## Task Queue + Microtask Queue
+## Task Queue + Microtask Queue (Job Queue)
 
-## Concurrency + Parallelism
+Job Q (for Promises) is now just like the callback Q in our JavaScript runtime implemented by the browser. But the event loop is going to check the job Q first, make sure that that's empty before we start putting some of the callback Q functions onto the call stack.
+
+## Threads, Concurrency and Parallelism
+
+- Concurrency - Single core CPU.
+
+- Concurrency + Parallelism - Multi-core CPU
+
+On the browser we have multiple worker threads in the background for us. A Web Worker is a JavaScript program running on a different thread in parallel to our main thread.
+
+```JavaScript
+
+var worker = new Worker('worker.js');
+worker.postMessage('Hello');
+
+```
+
+## Parallel, Sequence and Race
+
+```JavaScript
+
+const promisify = (item, delay) =>
+  new Promise((resolve) =>
+    setTimeout(() =>
+      resolve(item), delay));
+
+const a = () => promisify('a', 100);
+const b = () => promisify('b', 5000);
+const c = () => promisify('c', 3000);
+
+async function parallel() {
+  const promises = [a(), b(), c()];
+  const [output1, output2, output3] = await Promise.all(promises);
+  return `parallel is done: ${output1} ${output2} ${output3}`
+}
+
+async function race() {
+  const promises = [a(), b(), c()];
+  const output1 = await Promise.race(promises);
+  return `race is done: ${output1}`;
+}
+
+async function sequence() {
+  const output1 = await a();
+  const output2 = await b();
+  const output3 = await c();
+  return `sequence is done ${output1} ${output2} ${output3}`
+}
+
+sequence().then(console.log)
+parallel().then(console.log)
+race().then(console.log)
+
+```
+
+
+
 
 ## Modules in Javascript
 
 ## Design Patterns: Module, Prototype, Observer, and Singleton design patterns.
+
+
+## ES2020: allSettled()
+
+```JavaScript
+
+const promiseOne = new Promise((resolve, reject) => {
+  setTimeout(resolve, 3000);
+})
+
+const promiseTwo = new Promise((resolve, reject) => {
+  setTimeout(reject, 3000);
+})
+// Promise.allSettled runs all promises, regardless of whether they reject or not.
+Promise.allSettled([promiseOne, promiseTwo]).then(data => console.log(data))
+  .catch(err => console.error(err))
+
+```
+
