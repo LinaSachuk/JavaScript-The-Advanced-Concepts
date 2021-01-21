@@ -1353,6 +1353,8 @@ for (let i=0; i< 1000; i ++) {
 
 ## Composition vs Inheritance
 
+Whereas inheritance derives one class from another, composition defines a class as the sum of its parts. Classes and objects created through inheritance are tightly coupled because changing the parent or superclass in an inheritance relationship risks breaking your code.
+
 
 
 ## Currying
@@ -1386,15 +1388,131 @@ partialMultiplyBy5(10, 20)
 
 ## Referential Transparency
 
-## Compose
+## Compose and Pipe
 
-## Pipe
+ - Pipe
+ 
+The concept of pipe is simple — it combines n functions. It’s a pipe flowing left-to-right, calling each function with the output of the last one. Instead of jamming functions within functions or creating a bunch of intermediate variables, let’s pipe all the things!
+
+```JavaScript
+
+pipe(
+  getName,
+  uppercase,
+  get6Characters,
+  reverse 
+)({ name: 'Buckethead' }) //'TEKCUB'
+
+
+```
+ - Compose
+ 
+ It’s just pipe in the other direction.
+So if you wanted the same result as our pipe above, you’d do the opposite.
+
+```JavaScript
+
+compose(
+  reverse,
+  get6Characters,
+  uppercase,
+  getName,
+)({ name: 'Buckethead' })
+
+
+```
+
+```JavaScript
+
+const user = {
+  name: 'Kim',
+  active: true,
+  cart: [],
+  purchases: []
+}
+const history1 = [];
+const compose = (f, g) => (...args) => f(g(...args))
+const pipe = (f, g) => (...args) => g(f(...args))
+const purchaseItem  = (...fns) => fns.reduce(compose);
+const purchaseItem2  = (...fns) => fns.reduce(pipe);
+purchaseItem2(
+  addItemToCart,
+  applyTaxToItems,
+  buyItem,
+  emptyUserCart,
+)(user, {name: 'laptop', price: 60})
+// purchaseItem(
+//   emptyUserCart,
+//   buyItem,
+//   applyTaxToItems,
+//   addItemToCart
+// )(user, {name: 'laptop', price: 50})
+function addItemToCart(user, item) {
+  history1.push(user)
+  const updatedCart = user.cart.concat(item)
+  return Object.assign({}, user, {cart: updatedCart});
+}
+
+function applyTaxToItems(user) {
+  history1.push(user)
+  const {cart} = user;
+  const taxRate = 1.3;
+  const updatedCart = cart.map(item => {
+    return {
+      name: item.name,
+      price: item.price*taxRate
+    }
+  })
+  return Object.assign({}, user, { cart: updatedCart });
+}
+
+function buyItem(user) {
+  history1.push(user)
+  const itemsInCart = user.cart;
+  return Object.assign({}, user, { purchases: itemsInCart });
+}
+function emptyUserCart(user) {
+  history1.push(user)
+  return Object.assign({}, user, { cart: [] });
+}
+
+function refundItem() {
+
+}
+
+function getUserState() {
+
+}
+
+function goBack() {
+
+}
+
+function goForward() {
+
+}
+
+
+```
 
 ## Error Handling
 
 ## Asynchronous JavaScript
 
 ## Callbacks, Promises, Async/Await
+
+- Promise
+
+In JavaScript, a promise is an object that returns a value which you hope to receive in the future, but not now.
+
+Because the value will be returned by the promise in the future, the promise is very well-suited for handling asynchronous operations.
+
+A promise has three states:
+
+1. Pending: you don’t know if you will complete learning JavaScript by the next month.
+2. Fulfilled: you complete learning JavaScript by the next month.
+3. Rejected: you don’t learn JavaScript at all.
+
 
 ## Event Loop + Callback Queue
 
