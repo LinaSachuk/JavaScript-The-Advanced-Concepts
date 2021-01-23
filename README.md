@@ -1746,6 +1746,23 @@ Modules - they are highly self-contained and grouped together with their own spe
 
 ## Design Patterns: Module, Prototype, Observer, and Singleton design patterns.
 
+A design pattern is a term used in software engineering for a general, reusable solution to a commonly occurring problem in software design.
+
+Design patterns are beneficial for various reasons. They are proven solutions that industry veterans have tried and tested. They are solid approaches that solve issues in a widely accepted way and reflect the experience and insights of the industry-leading developers that helped define them. Patterns also make your code more reusable and readable while speeding up the development process vastly.
+Design patterns are by no means finished solutions. They only provide us with approaches or schemes to solve a problem.
+
+- Module
+- Prototype
+- Observer Pattern
+
+It is a crucial behavioral design pattern that defines one-to-many dependencies between objects so that when one object (publisher) changes its state, all the other dependent objects (subscribers) are notified and updated automatically. 
+
+
+
+
+
+
+- Singleton
 
 ## ES2020: allSettled()
 
