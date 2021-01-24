@@ -1744,18 +1744,47 @@ Modules - they are highly self-contained and grouped together with their own spe
 
 
 
-## Design Patterns: Module, Prototype, Observer, and Singleton design patterns.
+## Design Patterns: Constructor, Module, Prototype, Observer, and Singleton design patterns.
 
 A design pattern is a term used in software engineering for a general, reusable solution to a commonly occurring problem in software design.
 
 Design patterns are beneficial for various reasons. They are proven solutions that industry veterans have tried and tested. They are solid approaches that solve issues in a widely accepted way and reflect the experience and insights of the industry-leading developers that helped define them. Patterns also make your code more reusable and readable while speeding up the development process vastly.
 Design patterns are by no means finished solutions. They only provide us with approaches or schemes to solve a problem.
 
+- Constructor pattern
+
+JavaScript allows you to create a custom constructor function that defines the properties and methods of user-defined objects.
+
+By convention, the name of a constructor function in JavaScript starts with an uppercase letter.
+
+For example, the following rewritten the animal object of the prior example:
+
+```JavaScript
+
+function Animal(name) {
+    this.name = name;
+    this.identify = function() {
+        console.log("I'm " + this.name);
+    };
+}
+
+// To create a new instance of Animal, you use the new operator. For example:
+var donald = new Animal('Donald');
+
+```
+
+
+
+
+
+
 - Module
-- Prototype
+- Prototype pattern
 - Observer Pattern
 
-It is a crucial behavioral design pattern that defines one-to-many dependencies between objects so that when one object (publisher) changes its state, all the other dependent objects (subscribers) are notified and updated automatically. 
+It is a crucial behavioral design pattern that defines one-to-many dependencies between objects so that when one object (publisher) changes its state, all the other dependent objects (subscribers) are notified and updated automatically. This is also called PubSub (publisher/subscribers) or event dispatcher/listeners pattern. The publisher is sometimes called the subject, and the subscribers are sometimes called observers.
+
+Chances are, you’re already somewhat familiar with this pattern if you have used addEventListener or jQuery’s .on to write even-handling code. It has its influences in Reactive Programming (think RxJS) as well.
 
 
 
