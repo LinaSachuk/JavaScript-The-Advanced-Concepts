@@ -1744,7 +1744,7 @@ Modules - they are highly self-contained and grouped together with their own spe
 
 
 
-## Design Patterns: Constructor, Module, Prototype, Observer, and Singleton design patterns.
+## Design Patterns: Constructor, Module, Prototype, Observer, and Singleton design patterns
 
 A design pattern is a term used in software engineering for a general, reusable solution to a commonly occurring problem in software design.
 
@@ -1774,12 +1774,68 @@ var donald = new Animal('Donald');
 ```
 
 
+- Module Pattern
+
+The Module Pattern is one of the important patterns in JavaScript. It is a commonly used Design Pattern which is used to wrap a set of variables and functions together in a single scope.
+It is used to define objects and specify the variables and the functions that can be accessed from outside the scope of the function. We expose certain properties and function as public and can also restrict the scope of properties and functions within the object itself, making them private. This means that those variables cannot be accessed outside the scope of the function. We can achieve data hiding an abstraction using this pattern in the JavaScript.
+Let's look for the simple implementation of Module Pattern with only public fields:
+
+```JavaScript 
+
+function EmployeeDetails() {
+  var name: "Mayank";
+  var age = 30;
+  var designation = "Developer"
+  
+  return {
+    name: name,
+    age: age,
+    designation: designation
+  }
+}
+
+var newEmployee = EmployeeDetails()
+
+var userName = newEmployee.name;
+var userAge = newEmployee.age;
+var userDesignation = newEmployee.designation;
+
+```
 
 
 
 
-- Module
+
+
 - Prototype pattern
+
+This pattern is an object-based creational design pattern. In this, we use a sort of a “skeleton” of an existing object to create or instantiate new objects.
+This pattern is specifically important and beneficial to JavaScript because it utilizes prototypal inheritance instead of a classic object-oriented inheritance. Hence, it plays to JavaScript’s strength and has native support.
+In this example, we have a car object that we use as the prototype to create another object myCar with JavaScript’s Object.create feature and define an extra property owner on the new object.
+
+```JavaScript
+
+// using Object.create as was recommended by ES5 standard
+const car = {
+  noOfWheels: 4,
+  start() {
+    return 'started';
+  },
+  stop() {
+    return 'stopped';
+  },
+};
+
+// Object.create(proto[, propertiesObject])
+
+const myCar = Object.create(car, { owner: { value: 'John' } });
+
+console.log(myCar.__proto__ === car); // true
+
+
+```
+
+
 - Observer Pattern
 
 It is a crucial behavioral design pattern that defines one-to-many dependencies between objects so that when one object (publisher) changes its state, all the other dependent objects (subscribers) are notified and updated automatically. This is also called PubSub (publisher/subscribers) or event dispatcher/listeners pattern. The publisher is sometimes called the subject, and the subscribers are sometimes called observers.
@@ -1791,7 +1847,44 @@ Chances are, you’re already somewhat familiar with this pattern if you have us
 
 
 
-- Singleton
+- Singleton Pattern
+
+Singleton is a special creational design pattern in which only one instance of a class can exist. It works like this — if no instance of the singleton class exists then a new instance is created and returned, but if an instance already exists, then the reference to the existing instance is returned.
+A perfect real-life example would be that of mongoose (the famous Node.js ODM library for MongoDB). It utilizes the singleton pattern.
+In this example, we have a Database class that is a singleton. First, we create an object mongo by using the new operator to invoke the Database class constructor. This time an object is instantiated because none already exists. The second time, when we create the mysql object, no new object is instantiated but instead, the reference to the object that was instantiated earlier, i.e. the mongo object, is returned.
+
+
+```JavaScript
+
+class Database {
+  constructor(data) {
+    if (Database.exists) {
+      return Database.instance;
+    }
+    this._data = data;
+    Database.instance = this;
+    Database.exists = true;
+    return this;
+  }
+
+  getData() {
+    return this._data;
+  }
+
+  setData(data) {
+    this._data = data;
+  }
+}
+
+// usage
+const mongo = new Database('mongo');
+console.log(mongo.getData()); // mongo
+
+const mysql = new Database('mysql');
+console.log(mysql.getData()); // mongo
+
+```
+
 
 ## ES2020: allSettled()
 
