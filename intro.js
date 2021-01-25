@@ -252,3 +252,53 @@ reverse('Timbits Hi')
 reverse('Timbits Hi')
 reverse3('Timbits Hi')
 
+
+
+// forEach
+const array = [1, 2, 3, 4, 5, 6, 7];
+
+// const double = []
+// const newArray = array.forEach((num) => {
+//     double.push(num * 2);
+// }) 
+
+// // map (return a new array)
+const mapArray = array.map((num) => {
+    return num * 2;
+})
+console.log(mapArray);
+
+// filter (return a new array)
+const filterArray = array.filter((num) => {
+    return num > 5
+})
+console.log(filterArray);
+
+// // reduce
+const reduceArray = array.reduce((accumulator, num) => {
+    return accumulator + num
+}, 0);
+console.log(reduceArray);
+
+
+// for of
+// Iterating - arrays, strings
+const basket = ['apples', 'oranges', 'grapes'];
+
+for (item of basket) {
+    console.log(item);
+}
+
+
+// for in - properties
+// Enumerating - objects
+const detailedBasket = {
+    apples: 5,
+    oranges: 10,
+    grapes: 100
+}
+
+for (item in detailedBasket) {
+    console.lot(item)
+}
+
