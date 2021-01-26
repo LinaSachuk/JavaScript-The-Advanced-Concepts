@@ -1886,7 +1886,9 @@ console.log(mysql.getData()); // mongo
 ```
 
 
-## ES2020: allSettled()
+## ES2020
+
+- allSettled()
 
 ```JavaScript
 
@@ -1900,6 +1902,143 @@ const promiseTwo = new Promise((resolve, reject) => {
 // Promise.allSettled runs all promises, regardless of whether they reject or not.
 Promise.allSettled([promiseOne, promiseTwo]).then(data => console.log(data))
   .catch(err => console.error(err))
+
+```
+
+- BigInt (new type of)
+
+BigInt is a built-in object that provides a way to represent whole numbers larger than 253 - 1, which is the largest number JavaScript can reliably represent with the Number primitive and represented by the Number.MAX_SAFE_INTEGER constant. BigInt can be used for arbitrarily large integers.
+
+A BigInt is created by appending n to the end of an integer literal — 10n — or by calling the function BigInt().
+
+```JavaScript
+
+const previouslyMaxSafeInteger = 9007199254740991n
+
+const alsoHuge = BigInt(9007199254740991)
+// ↪ 9007199254740991n
+
+const hugeString = BigInt("9007199254740991")
+// ↪ 9007199254740991n
+
+const hugeHex = BigInt("0x1fffffffffffff")
+// ↪ 9007199254740991n
+
+const hugeOctal = BigInt("0o377777777777777777")
+// ↪ 9007199254740991n
+
+const hugeBin = BigInt("0b11111111111111111111111111111111111111111111111111111")
+// ↪ 9007199254740991n
+
+// When tested against typeof, a BigInt will give "bigint":
+typeof 1n === 'bigint'           // true
+typeof BigInt('1') === 'bigint'  // true
+
+// When wrapped in an Object, a BigInt will be considered as a normal "object" type:
+typeof Object(1n) === 'object'  // true
+
+// An operation with a fractional result will be truncated when used with a BigInt.
+const expected = 4n / 2n
+// ↪ 2n
+
+const rounded = 5n / 2n
+// ↪ 2n, not 2.5n
+
+
+// A BigInt is not strictly equal to a Number, but it is loosely so:
+0n === 0
+// ↪ false
+
+0n == 0
+// ↪ true
+
+```
+
+- Optional Chaining Operator (?.) 
+
+The optional chaining operator (?.) permits reading the value of a property located deep within a chain of connected objects without having to expressly validate that each reference in the chain is valid. The ?. operator functions similarly to the . chaining operator, except that instead of causing an error if a reference is nullish (null or undefined), the expression short-circuits with a return value of undefined. When used with function calls, it returns undefined if the given function does not exist.
+
+This results in shorter and simpler expressions when accessing chained properties when the possibility exists that a reference may be missing. It can also be helpful while exploring the content of an object when there's no known guarantee as to which properties are required.
+
+Optional chaining cannot be used on a non-declared root object, but can be used with an undefined root object.
+
+
+
+```JavaScript
+
+const adventurer = {
+  name: 'Alice',
+  cat: {
+    name: 'Dinah'
+  }
+};
+
+const dogName = adventurer.dog?.name;
+console.log(dogName);
+// expected output: undefined
+
+console.log(adventurer.someNonExistentMethod?.());
+// expected output: undefined
+
+// syntax
+obj.val?.prop
+obj.val?.[expr]
+obj.arr?.[index]
+obj.func?.(args)
+
+
+
+// By using the ?. operator instead of just ., JavaScript knows to implicitly check to be sure obj.first is not null or undefined before attempting to access obj.first.second. If obj.first is null or undefined, the expression automatically short-circuits, returning undefined.
+let nestedProp = obj.first?.second;
+
+
+// The nullish coalescing operator (??) may be used after optional chaining in order to build a default value when none was found:
+let customer = {
+  name: "Carl",
+  details: { age: 82 }
+};
+const customerCity = customer?.city ?? "Unknown city";
+console.log(customerCity); // Unknown city
+
+```
+
+- globalThis
+
+The global globalThis property contains the global this value, which is akin to the global object.
+
+Historically, accessing the global object has required different syntax in different JavaScript environments. On the web you can use window, self, or frames - but in Web Workers only self will work. In Node.js none of these work, and you must instead use global.
+The this keyword could be used inside functions running in non–strict mode, but this will be undefined in Modules and inside functions running in strict mode. You can also use Function('return this')(), but environments that disable eval(), like CSP in browsers, prevent use of Function in this way.
+
+The globalThis property provides a standard way of accessing the global this value (and hence the global object itself) across environments. Unlike similar properties such as window and self, it's guaranteed to work in window and non-window contexts. In this way, you can access the global object in a consistent manner without having to know which environment the code is being run in. To help you remember the name, just remember that in global scope the this value is globalThis.
+
+
+```JavaScript
+
+function canMakeHTTPRequest() {
+  return typeof globalThis.XMLHttpRequest === 'function';
+}
+
+console.log(canMakeHTTPRequest());
+// expected output (in a browser): true
+
+
+
+```
+
+
+
+
+
+
+
+
+
+
+
+```JavaScript
+
+
+
 
 ```
 
