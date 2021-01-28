@@ -113,7 +113,6 @@ Javascript is a garbage-collected language. This means that if Javascript alloca
 
 Node.js is a JavaScript runtime built on Chrome's V8 JavaScript engine. It has Global API. It set to be a server side platform based on asynchronous IO that is non blocking.
 
-## ES6, ES7, ES8, ES9 features
 
 ## Single Threaded Model
 
@@ -267,6 +266,20 @@ say();
 ```
 
 ## Dynamic vs Lexical Scope
+
+Scoping itself is how you search for a variable with a given name. A variable has a scope which is the whole area in which that variable can be accessed by name.
+
+In Javascript, we can call Scope as the set of rules that govern how the Engine can look up a variable by its identifier name and find it.
+There are two types of Scope models that are widely used. By far the most commonly used Scope model by vast majority of programming languages is Lexical Scope, also Javascript uses this Lexical Scope model. The other model which is still used by some languages like Bash scripting is called Dynamic Scope. 
+
+- Dynamic Scope
+In dynamic scoping, you search in the local function first, then you search in the function that called the local function, then you search in the function that called that function, and so on, up the call-stack.
+
+
+The arrow functions are lexically bound. Arrow functions have a lexical behavior unlike normal functions.
+
+
+
 
 ##  this - call(), apply(), bind()
 
