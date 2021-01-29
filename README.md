@@ -1315,6 +1315,11 @@ fiona.attack()
 
 ## Private vs Public properties
 
+- Public: These members of the class and available to everyone that can access the (owner) class instance.
+
+- Private: These members are only accessible within the class that instantiated the object.
+
+- Protected: This keyword allows a little more access than private members but a lot less than the public. A protected member is accessible within the class (similar to private) and any object that inherits from it. A protected value is shared across all layers of the prototype chain. It is not accessible by anybody else.
 
 
 
@@ -1426,8 +1431,16 @@ partialMultiplyBy5(10, 20)
 
 ## Pure Functions
 
+- A pure function is a function which:
+Given the same input, will always return the same output.
+
+- Produces no side effects.
+
 ## Referential Transparency
 
+Referential transparency means that a function call can be replaced by its value or another referentially transparent call with the same result. It makes reasoning about programs easier. It also makes each subprogram independent, which greatly simplifies unit testing and refactoring.
+
+ A function is referentially transparent if it’s a pure function whose parameters are immutable.
 ## Compose and Pipe
 
  - Pipe
