@@ -1550,7 +1550,19 @@ function goForward() {
 
 ## Error Handling
 
+The _try_ statement lets you test a block of code for errors.
+
+The _catch_ statement lets you handle the error.
+
+The _throw_ statement lets you create custom errors.
+
+The _finally_ statement lets you execute code, after try and catch, regardless of the result.
+
+
+
 ## Asynchronous JavaScript
+
+
 
 ## Callbacks, Promises, Async/Await
 
