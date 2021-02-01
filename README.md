@@ -1562,6 +1562,12 @@ The _finally_ statement lets you execute code, after try and catch, regardless o
 
 ## Asynchronous JavaScript
 
+"I will finish later!"
+
+Functions running in parallel with other functions are called asynchronous
+
+A good example is JavaScript setTimeout()
+
 
 
 ## Callbacks, Promises, Async/Await
