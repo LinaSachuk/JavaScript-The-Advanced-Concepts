@@ -2079,7 +2079,18 @@ console.log(canMakeHTTPRequest());
 
 ```
 
+- Import meta data
 
+The import.meta object provides metadata for the current module. The JavaScript engine creates it, and its current available property is url. This property's value is the URL from which the module was loaded, including any query parameter or hash.
+
+As an example, you could use the import.meta.url property to build the URL of a data.json file stored in the same folder of the current module. The following code gets this result:
+
+```JavaScript
+const dataUrl = new URL("data.json", import.meta.url);
+
+```
+
+In this case, the import.meta.url provides the URL class with the base URL for the data.json file.
 
 
 
