@@ -2112,11 +2112,107 @@ The essential concepts in RxJS which solve async event management are:
 - Schedulers: are centralized dispatchers to control concurrency, allowing us to coordinate when computation happens on e.g. setTimeout or requestAnimationFrame or others.
 
 
+First examples:
+
+```JavaScript
+// Normally you register event listeners.
+document.addEventListener('click', () => console.log('Clicked!'));
+
+// Using RxJS you create an observable instead.
+import { fromEvent } from 'rxjs';
+
+fromEvent(document, 'click').subscribe(() => console.log('Clicked!'));
+
+```
+
+Purity.
+
+What makes RxJS powerful is its ability to produce values using pure functions. That means your code is less prone to errors.
+
+Normally you would create an impure function, where other pieces of your code can mess up your state.
+
 
 ```JavaScript
 
+let count = 0;
+document.addEventListener('click', () => console.log(`Clicked ${++count} times`));
+
+// Using RxJS you isolate the state.
+// The scan operator works just like reduce for arrays. It takes a value which is exposed to a callback. The returned value of the callback will then become the next value exposed the next time the callback runs.
+
+
+import { fromEvent } from 'rxjs';
+import { scan } from 'rxjs/operators';
+
+fromEvent(document, 'click')
+  .pipe(scan(count => count + 1, 0))
+  .subscribe(count => console.log(`Clicked ${count} times`));
+
+```
+
+Flow.
+
+RxJS has a whole range of operators that helps you control how the events flow through your observables.
+
+This is how you would allow at most one click per second, with plain JavaScript:
+
+
+```JavaScript
+let count = 0;
+let rate = 1000;
+let lastClick = Date.now() - rate;
+document.addEventListener('click', () => {
+  if (Date.now() - lastClick >= rate) {
+    console.log(`Clicked ${++count} times`);
+    lastClick = Date.now();
+  }
+});
+
+// With RxJS:
+import { fromEvent } from 'rxjs';
+import { throttleTime, scan } from 'rxjs/operators';
+
+fromEvent(document, 'click')
+  .pipe(
+    throttleTime(1000),
+    scan(count => count + 1, 0)
+  )
+  .subscribe(count => console.log(`Clicked ${count} times`));
+// Other flow control operators are filter, delay, debounceTime, take, takeUntil, distinct, distinctUntilChanged etc.
+
+```
+
+Values.
+You can transform the values passed through your observables.
+
+Here's how you can add the current mouse x position for every click, in plain JavaScript:
+
+```JavaScript
+let count = 0;
+const rate = 1000;
+let lastClick = Date.now() - rate;
+document.addEventListener('click', event => {
+  if (Date.now() - lastClick >= rate) {
+    count += event.clientX;
+    console.log(count);
+    lastClick = Date.now();
+  }
+});
+
+// With RxJS:
+import { fromEvent } from 'rxjs';
+import { throttleTime, map, scan } from 'rxjs/operators';
+
+fromEvent(document, 'click')
+  .pipe(
+    throttleTime(1000),
+    map(event => event.clientX),
+    scan((count, clientX) => count + clientX, 0)
+  )
+  .subscribe(count => console.log(count));
+
+  // Other value producing operators are pluck, pairwise, sample etc.
 
 
 
 ```
-
