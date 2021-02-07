@@ -2274,3 +2274,27 @@ A Function is a lazily evaluated computation that synchronously returns a single
 A generator is a lazily evaluated computation that synchronously returns zero to (potentially) infinite values on iteration.
 A Promise is a computation that may (or may not) eventually return a single value.
 An Observable is a lazily evaluated computation that can synchronously or asynchronously return zero to (potentially) infinite values from the time it's invoked onwards.
+
+
+## Observables as generalizations of functions
+
+Contrary to popular claims, Observables are not like EventEmitters nor are they like Promises for multiple values. Observables may act like EventEmitters in some cases, namely when they are multicasted using RxJS Subjects, but usually they don't act like EventEmitters.
+
+Observables are like functions with zero arguments, but generalize those to allow multiple values.
+
+Consider the following:
+
+```JavaScript
+
+function foo() {
+  console.log('Hello');
+  return 42;
+}
+
+const x = foo.call(); // same as foo()
+console.log(x);
+const y = foo.call(); // same as foo()
+console.log(y);
+
+```
+
