@@ -2298,3 +2298,25 @@ console.log(y);
 
 ```
 
+Observables are able to deliver values either synchronously or asynchronously.
+
+What is the difference between an Observable and a function? Observables can "return" multiple values over time, something which functions cannot. Functions can only return one value. Observables, however, can do this:
+
+```JavaScript
+
+import { Observable } from 'rxjs';
+
+const foo = new Observable(subscriber => {
+  console.log('Hello');
+  subscriber.next(42);
+  subscriber.next(100); // "return" another value
+  subscriber.next(200); // "return" yet another
+});
+
+console.log('before');
+foo.subscribe(x => {
+  console.log(x);
+});
+console.log('after');
+
+```
