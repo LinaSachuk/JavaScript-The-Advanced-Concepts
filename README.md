@@ -1802,6 +1802,10 @@ Modules - they are highly self-contained and grouped together with their own spe
 
 A design pattern is a term used in software engineering for a general, reusable solution to a commonly occurring problem in software design.
 
+- Creational - create new things
+- Structural - structure your codes
+- Behavior - use for behaviors in code
+
 Design patterns are beneficial for various reasons. They are proven solutions that industry veterans have tried and tested. They are solid approaches that solve issues in a widely accepted way and reflect the experience and insights of the industry-leading developers that helped define them. Patterns also make your code more reusable and readable while speeding up the development process vastly.
 Design patterns are by no means finished solutions. They only provide us with approaches or schemes to solve a problem.
 
